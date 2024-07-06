@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-pack-display {
+  margin: 10px;
+  width: 18rem;
+  text-align: center;
+}
+
+.card-pack-display:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.5); 
+}
