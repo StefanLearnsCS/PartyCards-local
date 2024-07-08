@@ -13,3 +13,12 @@
 .card-pack-display:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.5); 
 }
+
+#create-pack-container {
+  text-align: left;
+}
+
+#create-pack-button {
+  margin-top: 1rem;
+}
+

@@ -1,36 +1,21 @@
 import './App.css';
-import axios from "axios";
-import { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from "./pages/Home";
+import CreatePack from './pages/CreatePack';
 
 function App() {
 
-  const [listOfPosts, setListOfPosts] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/posts").then((response) => {
-      setListOfPosts(response.data);
-    });
-  }, []);
-
   return (
-      <Container className='col-xl-9'>
-        <Container className='d-flex justify-content-center flex-wrap'>
-          {listOfPosts.map((value, key) => {
-            return (
-            <Card className="card-pack-display" bg="info" border='dark'>
-              <Card.Header> {value.title} </Card.Header>
-              <Card.Body>
-                <Card.Subtitle> Creator: {value.username} </Card.Subtitle>
-                <Card.Text> {value.postText} </Card.Text>
-              </Card.Body>
-            </Card>
-            );
-        })} 
-        </Container>
-      </Container>
+      <div className='App'>
+        <Router>
+          <Link to="/createpack"> Create a Pack</Link>
+          <Link to="/"> Home </Link>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/createpack" element={<CreatePack/>} />
+          </Routes>
+        </Router>
+      </div>
   );
 
 }
