@@ -17,7 +17,9 @@ function CreatePack() {
     };
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string().required("You must include a Title!"),
+        title: Yup.string().required("You must include a Title!")
+        .min(3, "Title must be longer than 3 characters!")
+        .max(50, "Title must be shorter than 50 characters!"),
         postText: Yup.string().required("You must include a Description!"),
         username: Yup.string()
             .min(3, "Username must be longer than 3 characters!")
@@ -25,9 +27,8 @@ function CreatePack() {
             .required("You must include an Username!"),
         cards: Yup.array().of(
             Yup.object().shape({
-                prompt: Yup.string().required("You must include a prompt for each card!")
-            })
-        ).max(50, "A pack can contain a maximum of 50 cards.")
+                prompt: Yup.string().required("You must include a prompt for each card!").max(500, "Prompt may not exceed 500 characters!")
+            })).max(50, "A pack can contain a maximum of 50 cards.").min(2, "A pack must contain a minimum of 2 cards.")
     });
 
     const onSubmit = async (data) => {
@@ -39,7 +40,7 @@ function CreatePack() {
                 username: data.username
             });
     
-            const packId = postResponse.data.id; // Assuming the response contains the newly created pack ID
+            const packId = postResponse.data.id; 
     
             // Post individual cards to /cards
             const cardPromises = data.cards.map(card => 
@@ -51,7 +52,6 @@ function CreatePack() {
     
             await Promise.all(cardPromises);
     
-            // Navigate to another page if all requests succeed
             navigate("/");
         } catch (error) {
             console.error("Error creating card pack and cards", error);
@@ -68,6 +68,19 @@ function CreatePack() {
                 {...field}
                 {...props}
                 isInvalid={touched[field.name] && errors[field.name]}
+            />
+            <ErrorMessage name={field.name} component="div" className="invalid-feedback" />
+        </BootstrapForm.Group>
+    );
+
+    const BootstrapFieldText = ({ field, form: { touched, errors }, ...props }) => (
+        <BootstrapForm.Group controlId={field.name}>
+            <BootstrapForm.Label>{props.label}</BootstrapForm.Label>
+            <BootstrapForm.Control
+                {...field}
+                {...props}
+                isInvalid={touched[field.name] && errors[field.name]}
+                as="textarea"
             />
             <ErrorMessage name={field.name} component="div" className="invalid-feedback" />
         </BootstrapForm.Group>
@@ -90,7 +103,7 @@ function CreatePack() {
                             type="text"
                             label="Description"
                             placeholder="Describe your Party Pack!"
-                            component={BootstrapField}
+                            component={BootstrapFieldText}
                         />
                         <Field
                             name="username"
@@ -103,7 +116,6 @@ function CreatePack() {
                         <FieldArray name="cards">
                             {({ remove, push }) => (
                                 <div>
-                                    <h4>Cards</h4>
                                     {values.cards.map((card, index) => (
                                         <div key={index}>
                                             <Field
@@ -111,16 +123,18 @@ function CreatePack() {
                                                 type="text"
                                                 label={`Card ${index + 1}`}
                                                 placeholder="Card Prompt"
-                                                component={BootstrapField}
+                                                component={BootstrapFieldText}
                                             />
                                             <Button
                                                 variant="danger"
                                                 type="button"
                                                 onClick={() => remove(index)}
                                                 disabled={values.cards.length <= 1}
+                                                id="create-pack-button"
                                             >
                                                 Remove Card
                                             </Button>
+                                            <ErrorMessage name={`cards.${index}.prompt`} component="div" className="invalid-feedback" />
                                         </div>
                                     ))}
                                     <Button
@@ -128,6 +142,7 @@ function CreatePack() {
                                         type="button"
                                         onClick={() => push({ prompt: "" })}
                                         disabled={values.cards.length >= 50}
+                                        id="create-pack-button"
                                     >
                                         Add Card
                                     </Button>
@@ -135,7 +150,8 @@ function CreatePack() {
                             )}
                         </FieldArray>
 
-                        <Button variant="primary" type="submit" id="create-pack-button">Submit</Button>
+                        <Button variant="primary" type="submit" id="create-pack-button" 
+                        disabled={values.cards.length >= 50 || values.cards.length < 2}>Submit</Button>
                     </Form>
                 )}
             </Formik>
