@@ -15,8 +15,10 @@ router.get('/byId/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const post = req.body;
-    await Posts.create(post);
-    res.json(post);
+    const newPost = await Posts.create(post);
+    const { id } = newPost;
+
+    res.json({id, post});
 });
 
 module.exports = router;

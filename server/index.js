@@ -9,7 +9,10 @@ const db = require('./models')
 
 // Routers
 const postRouter = require('./routes/Posts')
+const cardRouter = require('./routes/Cards')
+
 app.use("/posts", postRouter)
+app.use("/cards", cardRouter)
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
