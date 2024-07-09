@@ -4,7 +4,7 @@ import { Container, Button, Form as BootstrapForm} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from 'yup';
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 
 
 function CreatePack() {
@@ -25,9 +25,11 @@ function CreatePack() {
 
     const onSubmit = (data) => {
         axios.post("http://localhost:3001/posts", data).then((response) => {
-            console.log("Posted!");
+            navigate("/");
         });
     };
+
+    let navigate = useNavigate();
 
     const BootstrapField = ({ field, form: { touched, errors }, ...props }) => (
         <BootstrapForm.Group controlId={field.name}>

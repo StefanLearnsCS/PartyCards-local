@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
   const [listOfPosts, setListOfPosts] = useState([]);
+  let navigate = useNavigate()
 
   useEffect(() => {
     axios.get("http://localhost:3001/posts").then((response) => {
@@ -21,7 +23,7 @@ function Home() {
         <Container className='d-flex justify-content-center flex-wrap'>
           {listOfPosts.map((value, key) => {
             return (
-            <Card className="card-pack-display" bg="info" border='dark'>
+            <Card className="card-pack-display" bg="info" border='dark' onClick={() => {navigate(`/pack/${value.id}`)}}>
               <Card.Header> {value.title} </Card.Header>
               <Card.Body>
                 <Card.Subtitle> Creator: {value.username} </Card.Subtitle>
