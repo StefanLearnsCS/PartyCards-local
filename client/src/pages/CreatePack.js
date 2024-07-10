@@ -24,7 +24,7 @@ function CreatePack() {
         username: Yup.string()
             .min(3, "Username must be longer than 3 characters!")
             .max(15, "Username must be shorter than 15 characters!")
-            .required("You must include an Username!"),
+            .required("You must include a Username!"),
         cards: Yup.array().of(
             Yup.object().shape({
                 prompt: Yup.string().required("You must include a prompt for each card!").max(500, "Prompt may not exceed 500 characters!")
@@ -87,28 +87,28 @@ function CreatePack() {
     );
 
     return (
-        <Container className='col-xl-4' id='create-pack-container'>
+        <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                 {({ values, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <Field
                             name="title"
                             type="text"
-                            label="Title"
+                            label="Title:"
                             placeholder="Party Pack Name"
                             component={BootstrapField}
                         />
                         <Field
                             name="postText"
                             type="text"
-                            label="Description"
+                            label="Description:"
                             placeholder="Describe your Party Pack!"
                             component={BootstrapFieldText}
                         />
                         <Field
                             name="username"
                             type="text"
-                            label="Username"
+                            label="Username:"
                             placeholder="Your Name"
                             component={BootstrapField}
                         />
@@ -121,7 +121,7 @@ function CreatePack() {
                                             <Field
                                                 name={`cards.${index}.prompt`}
                                                 type="text"
-                                                label={`Card ${index + 1}`}
+                                                label={`Card ${index + 1}:`}
                                                 placeholder="Card Prompt"
                                                 component={BootstrapFieldText}
                                             />

@@ -1,7 +1,15 @@
+* {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .App {
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+.nav-link {
+  color: white;
 }
 
 .card-pack-display {
@@ -17,9 +25,33 @@
 
 #create-pack-container {
   text-align: left;
+  background-color: rgba(255, 255, 255, 0.795);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 #create-pack-button {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+#create-pack-field {
   margin-top: 1rem;
+}
+
+#nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+#nav-brand {
+  text-decoration: none;
+  color: white;
+  font-size: 1.75rem;
+}
+
+label.form-label{
+  margin-top: .75rem;
 }
 

@@ -3,14 +3,31 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from "./pages/Home";
 import CreatePack from './pages/CreatePack';
 import Pack from './pages/Pack';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
 
   return (
+      
       <div className='App'>
         <Router>
-          <Link to="/createpack"> Create a Pack</Link>
-          <Link to="/"> Home </Link>
+          <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary border-bottom border-white" sticky="top">
+            <Container>
+              <Navbar.Brand href="#home"><Link id="nav-brand" to="/"> PartyCards </Link></Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link ><Link id="nav-link" to="/createpack"> Create a Pack</Link></Nav.Link>
+                  <Nav.Link href="#link"><Link id="nav-link" to="/"> View All Packs </Link></Nav.Link>
+                  <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/createpack" element={<CreatePack/>} />

@@ -23,7 +23,7 @@ function Home() {
         <Container className='d-flex justify-content-center flex-wrap'>
           {listOfPosts.map((value, key) => {
             return (
-            <Card className="card-pack-display" bg="info" border='dark' onClick={() => {navigate(`/pack/${value.id}`)}}>
+            <Card text="white "className="card-pack-display" bg="secondary" border='white' onClick={() => {navigate(`/pack/${value.id}`)}}>
               <Card.Header> {value.title} </Card.Header>
               <Card.Body>
                 <Card.Subtitle> Creator: {value.username} </Card.Subtitle>
