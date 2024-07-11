@@ -23,12 +23,12 @@ function Pack() {
     return (
     <div className='inpack-container'>
         <Container>
-            <div id="inpack-text" className='fs-1'>{postObject.title}</div>
-            <div id="inpack-text" className='fs-4'>{postObject.postText}</div>
-            <div id="inpack-text" className='fs-6'>Card Pack Created By: {postObject.username}</div>
+                <div id="inpack-text-title" className='fs-1'>{postObject.title} 
+                <p id="inpack-text" className='fs-6 fw-light'>Card Pack Created By: {postObject.username} </p></div>
+                
             <Row>
                 <Col xl={6}>
-                    <Carousel data-bs-theme="dark" className='rounded border border-black'>
+                    <Carousel data-bs-theme="dark" className='rounded border border-black' interval={null}>
                         {cards.map((card, key) => {
                             return <Carousel.Item key={key}>
                                 <img src={CardBG} alt="First slide" className="d-block w-100 rounded" />
@@ -40,7 +40,7 @@ function Pack() {
                     </Carousel>
                 </Col>
                 <Col xl={6} id="inpack-comments-container" className='rounded border border-secondary'>
-                    <div id="inpack-text-comments" className='fs-1'>Share Your funny Stories:</div>
+                    <div id="inpack-text-comments-header">Share Your Funny Stories:</div>
                     <div id="inpack-text-comments" className='fs-6'>Comments Here</div>
                 </Col>
             </Row>

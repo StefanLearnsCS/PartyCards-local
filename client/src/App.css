@@ -1,5 +1,12 @@
 * {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: Poppins, sans-serif;
+}
+
+:root {
+  --color-background: #4b0505;
+  --stroke-width: calc(1em / 16);
+  --font-weight: 700;
+  --letter-spacing: calc(1em / 8);
 }
 
 .App {
@@ -56,7 +63,19 @@ label.form-label{
 }
 
 #inpack-text {
-  color: white;
+  color: rgb(0, 0, 0);
+}
+
+#inpack-text-title {
+  background-clip: text;
+  background-image: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
+  color: var(--color-background);
+  font-size: 2rem;
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
+  padding: calc(--stroke-width / 2);
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: var(--stroke-width);
 }
 
 .inpack-container {
@@ -71,8 +90,21 @@ label.form-label{
 }
 
 #inpack-text-comments {
-  color: red;
+  color: rgb(0, 0, 0);
 }
+
+#inpack-text-comments-header {
+  background-clip: text;
+  background-image: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
+  color: var(--color-background);
+  font-size: 1.75rem;
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
+  padding: calc(--stroke-width / 2);
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: var(--stroke-width);
+}
+
 
 #inpack-carousel-text {
   position: absolute;
