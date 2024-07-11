@@ -13,4 +13,9 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:packId', async (req, res) => {
+    const packId = req.params.packId;
+    const cards = await Cards.findAll({ where : { packId: packId} });
+    res.json(cards)
+});
 module.exports = router;

@@ -55,3 +55,35 @@ label.form-label{
   margin-top: .75rem;
 }
 
+#inpack-text {
+  color: white;
+}
+
+.inpack-container {
+  margin-top: 1rem;
+}
+
+#inpack-comments-container{
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.795);
+  padding: 0 1rem 1rem 1rem;
+  height: 65vh;
+}
+
+#inpack-text-comments {
+  color: red;
+}
+
+#inpack-carousel-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+  width: 70%;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
