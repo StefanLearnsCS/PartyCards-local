@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        clickCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        }
     });
 
     return Posts;

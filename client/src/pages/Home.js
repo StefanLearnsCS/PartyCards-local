@@ -23,11 +23,14 @@ function Home() {
         <Container className='d-flex justify-content-center flex-wrap'>
           {listOfPosts.map((value, key) => {
             return (
-            <Card text="white "className="card-pack-display" bg="secondary" border='white' onClick={() => {navigate(`/pack/${value.id}`)}}>
+            <Card text="black "className="card-pack-display" bg="white" border='black' onClick={() => {navigate(`/pack/${value.id}`)}}>
               <Card.Header> {value.title} </Card.Header>
               <Card.Body>
-                <Card.Subtitle> Creator: {value.username} </Card.Subtitle>
-                <Card.Text> {value.postText} </Card.Text>
+                <Card.Text id='card-pack-description'> {value.postText} </Card.Text>
+                <hr></hr>
+                <Card.Text id='card-pack-accessory'> Total Plays: {value.clickCount} </Card.Text>
+                <Card.Text id='card-pack-accessory'> Rating: </Card.Text>
+                <Card.Subtitle id='card-pack-accessory'> Created by: {value.username} </Card.Subtitle>
               </Card.Body>
             </Card>
             );
