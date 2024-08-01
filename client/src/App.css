@@ -100,7 +100,7 @@ label.form-label{
   text-align: left;
   background-color: rgba(255, 255, 255, 0.795);
   padding: 0 1rem 1rem 1rem;
-  height: 65vh;
+  height: 75vh;
 }
 
 #inpack-text-comments {
@@ -113,6 +113,11 @@ label.form-label{
   margin-bottom: .25rem;
   margin-top: .25rem;
 }
+
+#inpack-text-comments-add {
+  margin-bottom: auto;
+}
+
 
 
 #inpack-carousel-text {
@@ -132,10 +137,55 @@ label.form-label{
 .comment-charcount-container {
   display: flex;
   justify-content: flex-end;
-  margin-top: 5px; /* Adjust as needed */
+  margin-top: 5px;
 }
 
 .inpack-text-comment-charcount {
   text-align: right;
+}
+
+#inpack-comments-container .pagination {
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+#inpack-text-comments-card{
+  height: 10vh;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 1024px) {
+  #inpack-comments-container {
+    height: 95vh;
+    margin-bottom: 1rem;
+  }
+
+  #inpack-text-comments-card {
+    height: 14vh;
+  }
+}
+
+@media (max-width: 768px) {
+  #inpack-comments-container {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 426px) {
+  #inpack-text-comments-card-text{
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 321px) {
+  #inpack-comments-container {
+    height: 115vh;
+    margin-bottom: 1rem;
+  }
+
+  #inpack-text-comments-card {
+    height: 17vh;
+  }
 }
 

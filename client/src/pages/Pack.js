@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Col, Row, Carousel, InputGroup, Form, Button, Card} from 'react-bootstrap';
+import {Container, Col, Row, Carousel, InputGroup, Form, Button, Card, Pagination} from 'react-bootstrap';
 import CardBG from '../images/card-bg.jpg';
 
 function Pack() {
@@ -12,6 +12,8 @@ function Pack() {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("")
     const [charCount, setCharCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const commentsPerPage = 4;
     const MAX_CHAR_LIMIT = 100;
 
     useEffect(() => {
@@ -47,16 +49,23 @@ function Pack() {
             setComments([...comments, commentToAdd]);
             setNewComment("");
             setCharCount(0);
+            setCurrentPage(Math.ceil((comments.length + 1) / commentsPerPage));
         })
     };
+
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+    const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
     <div className='inpack-container'>
         <Container>
                 <div id="inpack-text-title" className='fs-1'>{postObject.title} </div>
                 
-            <Row>
-                <Col xl={6}>
+            <Row className="justify-content-center">
+                <Col md={8} lg={6} xl={6}>
                     <Carousel data-bs-theme="dark" className='rounded border border-black' interval={null}>
                         {cards.map((card, key) => {
                             return <Carousel.Item key={key}>
@@ -68,7 +77,7 @@ function Pack() {
                         })}
                     </Carousel>
                 </Col>
-                <Col xl={6} id="inpack-comments-container" className='rounded border border-secondary'>
+                <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='rounded border border-secondary d-flex flex-column justify-content-between'>
                     <div id="inpack-text-comments-header">Share Your Funny Stories:</div>
                     <div id="inpack-text-comments-add" className='fs-6'> 
                         <InputGroup>
@@ -90,17 +99,24 @@ function Pack() {
                             </div>
                         </div>
                     </div>
-                    {comments.map((card, key) => {
+                    {currentComments.map((card, key) => {
                         return <div id="inpack-text-comments" className='fs-6' key={key}> 
-                            <Card bg="white" border="secondary" style={{ width: '100%', marginTop: '1rem' }}>
+                            <Card id="inpack-text-comments-card" bg="white" border="secondary">
                                 <Card.Body>
-                                    <Card.Text>
+                                    <Card.Text id="inpack-text-comments-card-text">
                                         {card.commentText}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
                         </div>
                     })}
+                    <Pagination className="mt-3">
+                        {Array.from({ length: Math.ceil(comments.length / commentsPerPage) }, (_, index) => (
+                            <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+                                {index + 1}
+                            </Pagination.Item>
+                        ))}
+                    </Pagination>
                 </Col>
             </Row>
         </Container>
