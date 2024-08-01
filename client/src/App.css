@@ -89,6 +89,7 @@ label.form-label{
   padding: calc(--stroke-width / 2);
   -webkit-text-stroke-color: transparent;
   -webkit-text-stroke-width: var(--stroke-width);
+  margin-bottom: 1rem;
 }
 
 .inpack-container {
@@ -107,15 +108,10 @@ label.form-label{
 }
 
 #inpack-text-comments-header {
-  background-clip: text;
-  background-image: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
-  color: var(--color-background);
-  font-size: 1.75rem;
-  font-weight: var(--font-weight);
-  letter-spacing: var(--letter-spacing);
-  padding: calc(--stroke-width / 2);
-  -webkit-text-stroke-color: transparent;
-  -webkit-text-stroke-width: var(--stroke-width);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: .25rem;
+  margin-top: .25rem;
 }
 
 
@@ -132,3 +128,14 @@ label.form-label{
   display: flex;
   justify-content: center;
 }
+
+.comment-charcount-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px; /* Adjust as needed */
+}
+
+.inpack-text-comment-charcount {
+  text-align: right;
+}
+
