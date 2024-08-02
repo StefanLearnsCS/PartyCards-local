@@ -62,7 +62,7 @@ function Pack() {
     return (
     <div className='inpack-container'>
         <Container>
-                <div id="inpack-text-title" className='fs-1'>{postObject.title} </div>
+            <div id="inpack-text-title" className='fs-1 text-uppercase'>{postObject.title} </div>
                 
             <Row className="justify-content-center">
                 <Col md={8} lg={6} xl={6}>

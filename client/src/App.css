@@ -3,9 +3,9 @@
 }
 
 :root {
-  --color-background: #4b0505;
+  --color-background: #ffffffc4;
   --stroke-width: calc(1em / 16);
-  --font-weight: 700;
+  --font-weight: 600;
   --letter-spacing: calc(1em / 8);
 }
 
@@ -86,7 +86,7 @@ label.form-label{
 
 #inpack-text-title {
   background-clip: text;
-  background-image: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
+  background-image: linear-gradient(to right, #f10909, #e8d01a, #19f45b, #0ffeca);
   color: var(--color-background);
   font-size: 2rem;
   font-weight: var(--font-weight);
