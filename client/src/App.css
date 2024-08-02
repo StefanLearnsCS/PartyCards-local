@@ -132,6 +132,14 @@ label.form-label{
   text-align: center;
   display: flex;
   justify-content: center;
+  word-wrap: break-word; /* Ensures long words break and wrap */
+  word-break: break-word; /* Ensures long words break and wrap */
+  white-space: normal; /* Ensures text wraps to the next line */
+}
+
+#inpack-carousel-text p {
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .comment-charcount-container {
@@ -176,6 +184,9 @@ label.form-label{
   #inpack-text-comments-card-text{
     font-size: .9rem;
   }
+  #inpack-carousel-text p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 321px) {
@@ -186,6 +197,10 @@ label.form-label{
 
   #inpack-text-comments-card {
     height: 17vh;
+  }
+  
+  #inpack-carousel-text p {
+    font-size: 0.9rem;
   }
 }
 

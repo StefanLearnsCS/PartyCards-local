@@ -19,16 +19,23 @@ function CreatePack() {
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("You must include a Title!")
         .min(3, "Title must be longer than 3 characters!")
-        .max(50, "Title must be shorter than 50 characters!"),
-        postText: Yup.string().required("You must include a Description!"),
+        .max(20, "Title must be shorter than 20 characters!"),
+        postText: Yup.string().required("You must include a Description!")
+        .max(100, "Title must be shorter than 100 characters!"),
         username: Yup.string()
             .min(3, "Username must be longer than 3 characters!")
             .max(15, "Username must be shorter than 15 characters!")
             .required("You must include a Username!"),
-        cards: Yup.array().of(
-            Yup.object().shape({
-                prompt: Yup.string().required("You must include a prompt for each card!").max(500, "Prompt may not exceed 500 characters!")
-            })).max(50, "A pack can contain a maximum of 50 cards.").min(2, "A pack must contain a minimum of 2 cards.")
+        cards: Yup.array()
+            .of(
+                Yup.object().shape({
+                    prompt: Yup.string()
+                        .required('You must include a prompt for each card!')
+                        .max(150, 'Prompt may not exceed 150 characters!'),
+                })
+            )
+            .max(50, 'A pack can contain a maximum of 50 cards.')
+            .min(2, 'A pack must contain a minimum of 2 cards.'),
     });
 
     const onSubmit = async (data) => {
@@ -88,7 +95,13 @@ function CreatePack() {
 
     return (
         <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+            <Formik 
+                initialValues={initialValues} 
+                onSubmit={onSubmit} 
+                validationSchema={validationSchema} 
+                validateOnChange={true}
+                validateOnBlur={true}
+            >
                 {({ values, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <Field
@@ -114,7 +127,7 @@ function CreatePack() {
                         />
                         
                         <FieldArray name="cards">
-                            {({ remove, push }) => (
+                            {({ remove, push, form }) => (
                                 <div>
                                     {values.cards.map((card, index) => (
                                         <div key={index}>
@@ -134,13 +147,18 @@ function CreatePack() {
                                             >
                                                 Remove Card
                                             </Button>
-                                            <ErrorMessage name={`cards.${index}.prompt`} component="div" className="invalid-feedback" />
+                                            <ErrorMessage
+                                                name={`cards.${index}.prompt`}
+                                                component="div"
+                                                className="invalid-feedback"
+                                                style={{ display: 'block' }}
+                                            />
                                         </div>
                                     ))}
                                     <Button
                                         variant="secondary"
                                         type="button"
-                                        onClick={() => push({ prompt: "" })}
+                                        onClick={() => push({ prompt: '' })}
                                         disabled={values.cards.length >= 50}
                                         id="create-pack-button"
                                     >

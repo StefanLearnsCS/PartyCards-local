@@ -71,7 +71,7 @@ function Pack() {
                             return <Carousel.Item key={key}>
                                 <img src={CardBG} alt="First slide" className="d-block w-100 rounded" />
                                 <Carousel.Caption id="inpack-carousel-text">
-                                    <h3> {card.prompt} </h3>
+                                    <p> {card.prompt} </p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         })}
