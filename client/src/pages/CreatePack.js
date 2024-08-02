@@ -21,10 +21,10 @@ function CreatePack() {
         .min(3, "Title must be longer than 3 characters!")
         .max(20, "Title must be shorter than 20 characters!"),
         postText: Yup.string().required("You must include a Description!")
-        .max(100, "Title must be shorter than 100 characters!"),
+        .max(85, "Description must be shorter than 85 characters!"),
         username: Yup.string()
             .min(3, "Username must be longer than 3 characters!")
-            .max(15, "Username must be shorter than 15 characters!")
+            .max(10, "Username must be shorter than 10 characters!")
             .required("You must include a Username!"),
         cards: Yup.array()
             .of(

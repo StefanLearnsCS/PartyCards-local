@@ -30,6 +30,11 @@
   box-shadow: 0 0 11px rgba(244, 234, 56, 0.5); 
 }
 
+#card-pack-title {
+  font-size: .85rem;
+  font-weight: 500;
+}
+
 #card-pack-description {
   font-size: .75rem;
   height: 8rem;
@@ -40,7 +45,7 @@
   justify-content: end;
   align-items: end;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 #create-pack-container {
