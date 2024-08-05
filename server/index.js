@@ -8,13 +8,15 @@ app.use(cors());
 const db = require('./models')
 
 // Routers
-const postRouter = require('./routes/Posts')
-const cardRouter = require('./routes/Cards')
-const commentRouter = require('./routes/Comments')
+const postRouter = require('./routes/Posts');
+const cardRouter = require('./routes/Cards');
+const commentRouter = require('./routes/Comments');
+const userRouter = require('./routes/Users');
 
-app.use("/posts", postRouter)
-app.use("/cards", cardRouter)
-app.use("/comments", commentRouter)
+app.use("/posts", postRouter);
+app.use("/cards", cardRouter);
+app.use("/comments", commentRouter);
+app.use("/auth", userRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {

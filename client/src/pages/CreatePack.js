@@ -44,7 +44,7 @@ function CreatePack() {
             const postResponse = await axios.post("http://localhost:3001/posts", {
                 title: data.title,
                 postText: data.postText,
-                username: data.username
+                username: data.username,
             });
     
             const packId = postResponse.data.id; 

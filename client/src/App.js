@@ -7,6 +7,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Register from './pages/Register';
+import Login from './pages/Login';
+
 
 
 function App() {
@@ -25,6 +28,10 @@ function App() {
                   <Nav.Link href="#link"><Link id="nav-link" to="/"> View All Packs </Link></Nav.Link>
                   <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
                 </Nav>
+                <Nav>
+                  <Nav.Link href="#link"><Link id="nav-link" to="/login"> Login </Link></Nav.Link>
+                  <Nav.Link eventKey={2} href="#link"> <Link id="nav-link" to="/register"> Register </Link> </Nav.Link>
+                </Nav>
               </Navbar.Collapse>
             </Container>
           </Navbar>
@@ -32,6 +39,8 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/createpack" element={<CreatePack/>} />
             <Route path="/pack/:id" element={<Pack/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
           </Routes>
         </Router>
       </div>
