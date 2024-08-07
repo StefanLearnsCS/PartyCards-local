@@ -12,7 +12,11 @@ function Login() {
   const login = () => {
     const data = {username: username, password: password};
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
-      console.log(response.data);
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+          sessionStorage.setItem("accessToken", response.data);
+      }
     })
   };
 
@@ -29,7 +33,8 @@ function Login() {
           <Form.Label> Password </Form.Label>
           <Form.Control 
             placeholder="Password"
-            onChange={(event) => {setPassword(event.target.value);}} />
+            onChange={(event) => {setPassword(event.target.value);}}
+            type="password" />
         </Form.Group>
         <Button variant="primary" onClick={login} id="create-pack-button"> Login </Button>
       </Form>
