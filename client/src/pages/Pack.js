@@ -44,12 +44,23 @@ function Pack() {
             return;
         }
         
-        axios.post("http://localhost:3001/comments", {commentText: newComment, packId: id, username: "Steve"}).then((response) => {
-            const commentToAdd = {commentText: newComment};
-            setComments([...comments, commentToAdd]);
-            setNewComment("");
-            setCharCount(0);
-            setCurrentPage(Math.ceil((comments.length + 1) / commentsPerPage));
+        axios.post("http://localhost:3001/comments", {commentText: newComment, packId: id, username: "Steve"},
+            {
+                headers: {
+                    accessToken: sessionStorage.getItem("accessToken"),
+                },
+            }
+        ).then((response) => {
+            if (response.data.error) {
+                alert(response.data.error);
+            } else {
+                const commentToAdd = {commentText: newComment};
+                setComments([...comments, commentToAdd]);
+                setNewComment("");
+                setCharCount(0);
+                setCurrentPage(Math.ceil((comments.length + 1) / commentsPerPage));
+            }
+            
         })
     };
 
