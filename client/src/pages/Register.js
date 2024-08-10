@@ -4,8 +4,11 @@ import * as Yup from 'yup';
 import { Container, Button, Form as BootstrapForm} from 'react-bootstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+
+  let navigate = useNavigate();
 
   const initialValues = {
     username:"",
@@ -32,6 +35,7 @@ function Register() {
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/auth", data).then(() => {
       console.log(data);
+      navigate("/");
     })
   };
 
