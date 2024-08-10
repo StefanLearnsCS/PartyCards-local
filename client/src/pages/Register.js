@@ -53,13 +53,6 @@ function Register() {
                   component={BootstrapField}
               />
               <Field
-                  name="email"
-                  type="email"
-                  label="Email Address:"
-                  placeholder="Email Address"
-                  component={BootstrapField}
-              />
-              <Field
                   name="password"
                   type="password"
                   label="Password:"
