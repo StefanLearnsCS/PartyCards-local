@@ -29,8 +29,18 @@ function App() {
                   <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
                 </Nav>
                 <Nav>
+                  {!localStorage.getItem("accessToken") && (
+                  <>
                   <Nav.Link href="#link"><Link id="nav-link" to="/login"> Login </Link></Nav.Link>
                   <Nav.Link eventKey={2} href="#link"> <Link id="nav-link" to="/register"> Register </Link> </Nav.Link>
+                  </>
+                  )}
+                  {localStorage.getItem("accessToken") && (
+                  <>
+                  <Nav.Link href="#link"><Link id="nav-link" to="/"> Profile </Link></Nav.Link>
+                  <Nav.Link eventKey={2} href="#link"> <Link id="nav-link" to="/"> Sign out </Link> </Nav.Link>
+                  </>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>

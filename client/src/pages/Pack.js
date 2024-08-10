@@ -44,17 +44,17 @@ function Pack() {
             return;
         }
         
-        axios.post("http://localhost:3001/comments", {commentText: newComment, packId: id, username: "Steve"},
+        axios.post("http://localhost:3001/comments", {commentText: newComment, packId: id},
             {
                 headers: {
-                    accessToken: sessionStorage.getItem("accessToken"),
+                    accessToken: localStorage.getItem("accessToken"),
                 },
             }
         ).then((response) => {
             if (response.data.error) {
                 alert(response.data.error);
             } else {
-                const commentToAdd = {commentText: newComment};
+                const commentToAdd = {commentText: newComment, username: response.data.username};
                 setComments([...comments, commentToAdd]);
                 setNewComment("");
                 setCharCount(0);
@@ -115,7 +115,7 @@ function Pack() {
                             <Card id="inpack-text-comments-card" bg="white" border="secondary">
                                 <Card.Body>
                                     <Card.Text id="inpack-text-comments-card-text">
-                                        {card.commentText}
+                                        {card.username}: {card.commentText}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
