@@ -11,10 +11,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import { AuthContext } from './helpers/AuthContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [authState, setAuthState] = useState(!!localStorage.getItem("accessToken"));
+  
+  const [authState, setAuthState] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/auth/auth", {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      },
+    }).then((response) => {
+      if (response.data.error) {
+        setAuthState({ ...authState, status: false });
+      } else {
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
+      }
+    });
+  }, []);
   
   return (
       
@@ -32,16 +56,16 @@ function App() {
                     <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
                   </Nav>
                   <Nav>
-                    {!authState && (
+                    {!authState.status ? (
                     <>
                     <Nav.Link href="#link"><Link id="nav-link" to="/login"> Login </Link></Nav.Link>
                     <Nav.Link eventKey={2} href="#link"> <Link id="nav-link" to="/register"> Register </Link> </Nav.Link>
                     </>
-                    )}
-                    {authState && (
+                    ) : (
                     <>
                     <Nav.Link href="#link"><Link id="nav-link" to="/"> Profile </Link></Nav.Link>
                     <Nav.Link eventKey={2} href="#link"><LogoutButton /></Nav.Link>
+                    <Navbar.Text style={{ marginLeft: '15px' }}> Logged in: {authState.username} </Navbar.Text>
                     </>
                     )}
                   </Nav>
@@ -68,7 +92,11 @@ function LogoutButton() {
 
   const logout = () => {
     localStorage.removeItem("accessToken");
-    setAuthState(false);
+    setAuthState({
+      username: "",
+      id: 0,
+      status: false,
+    });
     navigate("/");
   };
 
