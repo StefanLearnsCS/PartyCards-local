@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Posts } = require("../models");
+const {validateToken} = require("../middleware/AuthMiddleware");
 
 router.get('/', async (req, res) => {
     const listOfPosts = await Posts.findAll();
@@ -17,8 +18,10 @@ router.get('/byId/:id', async (req, res) => {
     res.json(post)
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
     const post = req.body;
+    const username = req.user.username;
+    post.username = username;
     const newPost = await Posts.create(post);
     const { id } = newPost;
 

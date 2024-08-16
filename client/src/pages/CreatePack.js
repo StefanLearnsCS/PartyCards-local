@@ -22,10 +22,6 @@ function CreatePack() {
         .max(20, "Title must be shorter than 20 characters!"),
         postText: Yup.string().required("You must include a Description!")
         .max(85, "Description must be shorter than 85 characters!"),
-        username: Yup.string()
-            .min(3, "Username must be longer than 3 characters!")
-            .max(10, "Username must be shorter than 10 characters!")
-            .required("You must include a Username!"),
         cards: Yup.array()
             .of(
                 Yup.object().shape({
@@ -44,7 +40,11 @@ function CreatePack() {
             const postResponse = await axios.post("http://localhost:3001/posts", {
                 title: data.title,
                 postText: data.postText,
-                username: data.username,
+            },
+            {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
             });
     
             const packId = postResponse.data.id; 
@@ -117,13 +117,6 @@ function CreatePack() {
                             label="Description:"
                             placeholder="Describe your Party Pack!"
                             component={BootstrapFieldText}
-                        />
-                        <Field
-                            name="username"
-                            type="text"
-                            label="Username:"
-                            placeholder="Your Name"
-                            component={BootstrapField}
                         />
                         
                         <FieldArray name="cards">

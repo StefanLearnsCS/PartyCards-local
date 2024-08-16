@@ -21,4 +21,16 @@ router.get('/:packId', async (req, res) => {
     const comments = await Comments.findAll({ where : { packId: packId} });
     res.json(comments)
 });
+
+router.delete("/:commentId", validateToken, async (req, res) => {
+    const commentId = req.params.commentId
+
+    await Comments.destroy({where: {
+        id: commentId,},
+    });
+
+    res.json("DELETED SUCCESSFULLY");
+
+});
+
 module.exports = router;

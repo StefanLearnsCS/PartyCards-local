@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Col, Row, Carousel, InputGroup, Form, Button, Card, Pagination} from 'react-bootstrap';
 import CardBG from '../images/card-bg.jpg';
+import { AuthContext } from '../helpers/AuthContext'; 
 
 function Pack() {
     let { id } = useParams()
@@ -15,6 +16,8 @@ function Pack() {
     const [currentPage, setCurrentPage] = useState(1);
     const commentsPerPage = 4;
     const MAX_CHAR_LIMIT = 100;
+    const { authState } = useContext(AuthContext);
+
 
     useEffect(() => {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
@@ -54,7 +57,7 @@ function Pack() {
             if (response.data.error) {
                 alert(response.data.error);
             } else {
-                const commentToAdd = {commentText: newComment, username: response.data.username};
+                const commentToAdd = {commentText: response.data.commentText, username: response.data.username, id: response.data.id};
                 setComments([...comments, commentToAdd]);
                 setNewComment("");
                 setCharCount(0);
@@ -62,6 +65,15 @@ function Pack() {
             }
             
         })
+    };
+
+    const deleteComment = (id) => {
+        axios.delete(`http://localhost:3001/comments/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')},
+        }).then(() => {
+            setComments(comments.filter((val) => {
+                return val.id != id;
+            }));
+        });
     };
 
     const indexOfLastComment = currentPage * commentsPerPage;
@@ -109,6 +121,13 @@ function Pack() {
                                 {charCount}/{MAX_CHAR_LIMIT} characters
                             </div>
                         </div>
+                        <Pagination className="mt-1">
+                            {Array.from({ length: Math.ceil(comments.length / commentsPerPage) }, (_, index) => (
+                                <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+                                    {index + 1}
+                                </Pagination.Item>
+                            ))}
+                        </Pagination>
                     </div>
                     {currentComments.map((card, key) => {
                         return <div id="inpack-text-comments" className='fs-6' key={key}> 
@@ -117,17 +136,12 @@ function Pack() {
                                     <Card.Text id="inpack-text-comments-card-text">
                                         {card.username}: {card.commentText}
                                     </Card.Text>
+                                    {authState.username === card.username && <Button className='btn btn-primary btn-sm' onClick={() => {deleteComment(card.id)}}> Delete </Button>}
                                 </Card.Body>
                             </Card>
                         </div>
                     })}
-                    <Pagination className="mt-3">
-                        {Array.from({ length: Math.ceil(comments.length / commentsPerPage) }, (_, index) => (
-                            <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
-                                {index + 1}
-                            </Pagination.Item>
-                        ))}
-                    </Pagination>
+                    
                 </Col>
             </Row>
         </Container>
