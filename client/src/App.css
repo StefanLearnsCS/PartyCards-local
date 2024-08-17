@@ -30,6 +30,30 @@
   box-shadow: 0 0 11px rgba(244, 234, 56, 0.5); 
 }
 
+#card-pack-likebtn {
+  background-color: #67ff62; /* Blue background */
+  color: rgba(0, 0, 0, 0.747); /* White text */
+  border: 1px solid black;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: .8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+
+#card-pack-likebtn:hover {
+  background-color: #4df028; /* Darker blue on hover */
+}
+
+#card-pack-likebtn i {
+  margin-right: 8px;
+}
+
+
 #card-pack-title {
   font-size: .85rem;
   font-weight: 500;
@@ -37,7 +61,7 @@
 
 #card-pack-description {
   font-size: .75rem;
-  height: 8rem;
+  height: 7rem;
 }
 
 #card-pack-accessory {
@@ -48,17 +72,17 @@
   font-size: 0.8rem;
 }
 
+#card-pack-accessory label {
+  color: rgb(14, 167, 14);
+  font-weight: 550;
+}
+
 #create-pack-container {
   text-align: left;
   background-color: rgba(255, 255, 255, 0.795);
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 0 1rem 1rem 1rem;
-}
-
-#create-pack-button {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
 }
 
 #create-pack-field {

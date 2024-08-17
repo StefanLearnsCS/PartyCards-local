@@ -17,6 +17,28 @@ function Home() {
     });
   }, []);
 
+  const likeAPost = (postId, event) => {
+    event.stopPropagation(); 
+    axios.post("http://localhost:3001/likes", 
+      { PostId: postId}, 
+      { headers: {accessToken: localStorage.getItem("accessToken")}}
+    ).then((response) => {
+      setListOfPosts(listOfPosts.map((post) => {
+        if (post.id === postId) {
+          if (response.data.liked) {
+            return {...post, Likes: [...post.Likes, 0]};
+          } else {
+              const likesArray = post.Likes
+              likesArray.pop()
+              return {...post, Likes: likesArray};
+          }
+        } else {
+          return post;
+        }
+      }))
+    })
+  };
+
   return (
     <div>
       <Container className='col-xl-9'>
@@ -29,8 +51,9 @@ function Home() {
                 <Card.Text id='card-pack-description'> {value.postText} </Card.Text>
                 <hr></hr>
                 <Card.Text id='card-pack-accessory'> Total Plays: {value.clickCount} </Card.Text>
-                <Card.Text id='card-pack-accessory'> Rating: </Card.Text>
+                <Card.Text id='card-pack-accessory'> <label>Fun Meter: {value.Likes.length} Funs</label></Card.Text>
                 <Card.Subtitle id='card-pack-accessory'> Creator: {value.username} </Card.Subtitle>
+                <Card.Text id='card-pack-accessory' style={{marginTop: ".3rem"}}><button onClick={(event) => {likeAPost(value.id, event)}} id='card-pack-likebtn'> <i class="fa-solid fa-heart"></i> Fun! </button></Card.Text>
               </Card.Body>
             </Card>
             );
