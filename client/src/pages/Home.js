@@ -1,25 +1,58 @@
 import React from 'react'
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../helpers/AuthContext';
 
 function Home() {
 
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
+  const { authState, setAuthState } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+
   let navigate = useNavigate()
 
   useEffect(() => {
-    axios.get("http://localhost:3001/posts", 
-      { headers: {accessToken: localStorage.getItem("accessToken")}}).then((response) => {
-      setListOfPosts(response.data.listOfPosts);
-      setLikedPosts(response.data.likedPosts.map((like) => {
-        return like.PostId;
-      }));
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      navigate("/login");
+    }
+
+    axios.get("http://localhost:3001/auth/auth", { 
+      headers: { accessToken } 
+    }).then((response) => {
+      if (response.data.error) {
+        setAuthState({ ...authState, status: false });
+        navigate("/login")
+      } else {
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
+      }
+      setLoading(false);
+    }).catch(() => {
+      navigate("/login");
+      setLoading(false);
     });
+
+    axios.get("http://localhost:3001/posts", 
+      { headers: {accessToken: localStorage.getItem("accessToken")}})
+      .then((response) => {
+        setListOfPosts(response.data.listOfPosts || []);
+        setLikedPosts((response.data.likedPosts || []).map((like) => like.PostId));
+        setLoading(false);
+      }).catch(() => {
+        setListOfPosts([]);
+        setLikedPosts([]);
+        setLoading(false);
+      });
   }, []);
 
   const likeAPost = (postId, event) => {
@@ -51,6 +84,10 @@ function Home() {
       }
     });
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading message or spinner
+  }
 
   return (
     <div>

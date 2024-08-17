@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   
@@ -78,6 +79,7 @@ function App() {
               <Route path="/pack/:id" element={<Pack/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
+              <Route path="*" element={<PageNotFound/>} />
             </Routes>
           </Router>
         </AuthContext.Provider>
@@ -101,7 +103,7 @@ function LogoutButton() {
   };
 
   return (
-    <Link id="nav-link" to="#" onClick={logout}> Sign out </Link>
+    <Link id="nav-link" to="/login" onClick={logout}> Sign out </Link>
   );
 }
 

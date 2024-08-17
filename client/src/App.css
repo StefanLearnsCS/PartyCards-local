@@ -31,8 +31,8 @@
 }
 
 #card-pack-likebtn {
-  background-color: #ffffff; /* Blue background */
-  color: rgba(0, 0, 0, 0.747); /* White text */
+  background-color: #d9d9d9; 
+  color: rgba(0, 0, 0, 0.747);
   border: 1px solid black;
   font-weight: 500;
   text-align: center;
@@ -45,8 +45,8 @@
 }
 
 #card-pack-likebtn-liked {
-  background-color: #67ff62; /* Blue background */
-  color: rgba(0, 0, 0, 0.747); /* White text */
+  background-color: #67ff62; 
+  color: rgba(0, 0, 0, 0.747);
   border: 1px solid black;
   font-weight: 500;
   text-align: center;
@@ -59,7 +59,7 @@
 }
 
 #card-pack-likebtn:hover {
-  background-color: #4df028; /* Darker blue on hover */
+  background-color: #4df028;
 }
 
 #card-pack-likebtn i {
