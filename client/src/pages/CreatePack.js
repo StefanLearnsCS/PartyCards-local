@@ -5,9 +5,43 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from 'yup';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../helpers/AuthContext';
+import { useEffect, useState, useContext } from 'react';
+
+
 
 
 function CreatePack() {
+
+    const { authState, setAuthState } = useContext(AuthContext);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem("accessToken");
+    
+        if (!accessToken) {
+          navigate("/login");
+        }
+    
+        axios.get("http://localhost:3001/auth/auth", { 
+          headers: { accessToken } 
+        }).then((response) => {
+          if (response.data.error) {
+            setAuthState({ ...authState, status: false });
+            navigate("/login")
+          } else {
+            setAuthState({
+              username: response.data.username,
+              id: response.data.id,
+              status: true,
+            });
+          }
+          setLoading(false);
+        }).catch(() => {
+          navigate("/login");
+          setLoading(false);
+        }); 
+    }, []);
 
     const initialValues = {
         title:"",
@@ -92,6 +126,10 @@ function CreatePack() {
             <ErrorMessage name={field.name} component="div" className="invalid-feedback" />
         </BootstrapForm.Group>
     );
+
+    if (loading) {
+        return <div>Loading...</div>; // Show a loading message or spinner
+      }
 
     return (
         <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
