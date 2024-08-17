@@ -9,11 +9,16 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
 
   const [listOfPosts, setListOfPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
   let navigate = useNavigate()
 
   useEffect(() => {
-    axios.get("http://localhost:3001/posts").then((response) => {
-      setListOfPosts(response.data);
+    axios.get("http://localhost:3001/posts", 
+      { headers: {accessToken: localStorage.getItem("accessToken")}}).then((response) => {
+      setListOfPosts(response.data.listOfPosts);
+      setLikedPosts(response.data.likedPosts.map((like) => {
+        return like.PostId;
+      }));
     });
   }, []);
 
@@ -35,8 +40,16 @@ function Home() {
         } else {
           return post;
         }
-      }))
-    })
+      }));
+
+      if (likedPosts.includes(postId)) {
+        setLikedPosts(likedPosts.filter((id) => {
+          return id != postId;
+        }));
+      } else {
+        setLikedPosts([...likedPosts, postId]);
+      }
+    });
   };
 
   return (
@@ -53,7 +66,7 @@ function Home() {
                 <Card.Text id='card-pack-accessory'> Total Plays: {value.clickCount} </Card.Text>
                 <Card.Text id='card-pack-accessory'> <label>Fun Meter: {value.Likes.length} Funs</label></Card.Text>
                 <Card.Subtitle id='card-pack-accessory'> Creator: {value.username} </Card.Subtitle>
-                <Card.Text id='card-pack-accessory' style={{marginTop: ".3rem"}}><button onClick={(event) => {likeAPost(value.id, event)}} id='card-pack-likebtn'> <i class="fa-solid fa-heart"></i> Fun! </button></Card.Text>
+                <Card.Text id='card-pack-accessory' style={{marginTop: ".3rem"}}><button onClick={(event) => {likeAPost(value.id, event)}} id={likedPosts.includes(value.id) ? "card-pack-likebtn-liked" : "card-pack-likebtn"}> <i class="fa-solid fa-heart"></i> Fun! </button></Card.Text>
               </Card.Body>
             </Card>
             );
