@@ -14,6 +14,7 @@ import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageNotFound from './pages/PageNotFound';
+import Profile from './pages/Profile'
 
 function App() {
   
@@ -79,6 +80,7 @@ function App() {
               <Route path="/pack/:id" element={<Pack/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
+              <Route path="/profile/:id" element={<Profile/>} />
               <Route path="*" element={<PageNotFound/>} />
             </Routes>
           </Router>

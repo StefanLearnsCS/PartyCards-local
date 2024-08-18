@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
 
 function Home() {
@@ -100,9 +100,9 @@ function Home() {
               <Card.Body>
                 <Card.Text id='card-pack-description'> {value.postText} </Card.Text>
                 <hr></hr>
-                <Card.Text id='card-pack-accessory'> Total Plays: {value.clickCount} </Card.Text>
+                <Card.Text id='card-pack-accessory' style={{fontWeight:"500"}}> Total Plays: {value.clickCount} </Card.Text>
                 <Card.Text id='card-pack-accessory'> <label>Fun Meter: {value.Likes.length} Funs</label></Card.Text>
-                <Card.Subtitle id='card-pack-accessory'> Creator: {value.username} </Card.Subtitle>
+                <Card.Subtitle id='card-pack-accessory'><Link to={`/profile/${value.UserId}`} onClick={(e) => e.stopPropagation()}> Creator: {value.username}</Link> </Card.Subtitle>
                 <Card.Text id='card-pack-accessory' style={{marginTop: ".3rem"}}><button onClick={(event) => {likeAPost(value.id, event)}} id={likedPosts.includes(value.id) ? "card-pack-likebtn-liked" : "card-pack-likebtn"}> <i class="fa-solid fa-heart"></i> Fun! </button></Card.Text>
               </Card.Body>
             </Card>
