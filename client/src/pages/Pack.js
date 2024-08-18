@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Col, Row, Carousel, InputGroup, Form, Button, Card, Pagination} from 'react-bootstrap';
@@ -18,6 +18,7 @@ function Pack() {
     const MAX_CHAR_LIMIT = 100;
     const { authState } = useContext(AuthContext);
 
+    let navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
@@ -68,13 +69,20 @@ function Pack() {
     };
 
     const deleteComment = (id) => {
-        axios.delete(`http://localhost:3001/comments/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')},
+        axios.delete(`http://localhost:3001/comments/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}
         }).then(() => {
             setComments(comments.filter((val) => {
                 return val.id != id;
             }));
         });
     };
+
+    const deletePost = (id) => {
+        axios.delete(`http://localhost:3001/posts/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}}
+        ).then(() => {
+            navigate("/")
+        })
+    }
 
     const indexOfLastComment = currentPage * commentsPerPage;
     const indexOfFirstComment = indexOfLastComment - commentsPerPage;
@@ -99,6 +107,7 @@ function Pack() {
                             </Carousel.Item>
                         })}
                     </Carousel>
+                    {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-warning mt-3'> Delete Pack </Button>}
                 </Col>
                 <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='rounded border border-secondary d-flex flex-column justify-content-between'>
                     <div id="inpack-text-comments-header">Share Your Funny Stories:</div>

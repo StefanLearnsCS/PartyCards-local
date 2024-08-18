@@ -230,6 +230,10 @@ label.form-label{
     margin-bottom: 1rem;
   }
 
+  #inpack-text-comments-header {
+    font-size: 1.3rem;
+  }
+
   #inpack-carousel-text p {
     font-size: 0.9rem;
   }
