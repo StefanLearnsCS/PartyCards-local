@@ -43,7 +43,7 @@
 }
 
 .card-pack-display:hover {
-  box-shadow: 0 0 11px rgba(244, 234, 56, 0.5); 
+  box-shadow: 0 0 11px rgba(245, 18, 10, 0.692); 
 }
 
 #card-pack-likebtn {
@@ -223,13 +223,19 @@ label.form-label{
   margin-top: 1rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1440px) {
   #inpack-comments-container {
     margin-bottom: 1rem;
   }
   .card-pack-display {
     margin: 8px;
     width: 13rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  #inpack-comments-container {
+    margin-bottom: 1rem;
   }
 }
 
@@ -255,8 +261,16 @@ label.form-label{
     font-size: 1rem;
   }
   .card-pack-display {
-    margin: 8px;
-    width: 210px;
+    margin: 4px;
+    width: 170px;
+  }
+}
+
+@media (max-width: 376px) {
+
+  .card-pack-display {
+    margin: 4px;
+    width: 205px;
   }
 }
 

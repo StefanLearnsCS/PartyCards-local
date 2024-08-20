@@ -26,8 +26,6 @@ function Play() {
         setPackPerPage(6);
       } else if (window.innerWidth <= 1440) {
         setPackPerPage(8);
-      } else if (window.innerWidth <= 1440) {
-        setPackPerPage(6);
       } else {
         setPackPerPage(8);
       }
@@ -172,7 +170,7 @@ function Play() {
           {activeTab === "played" && "Most Played Packs"}
           {activeTab === "rated" && "Highest Rated Packs"}
         </h2>
-        <Container className='d-flex justify-content-center flex-wrap'>
+        <Container id="hello" className='d-flex justify-content-center flex-wrap'>
           {(activeTab === "new" 
             ? currentNewPacks 
             : activeTab === "played"
