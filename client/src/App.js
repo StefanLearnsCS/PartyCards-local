@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile'
+import Play from './pages/Play'
 
 function App() {
   
@@ -54,7 +55,7 @@ function App() {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
                     <Nav.Link ><Link id="nav-link" to="/createpack"> Create a Pack</Link></Nav.Link>
-                    <Nav.Link href="#link"><Link id="nav-link" to="/"> View All Packs </Link></Nav.Link>
+                    <Nav.Link href="#link"><Link id="nav-link" to="/play"> View All Packs </Link></Nav.Link>
                     <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
                   </Nav>
                   <Nav>
@@ -81,6 +82,7 @@ function App() {
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/profile/:id" element={<Profile/>} />
+              <Route path="/play" element={<Play/>} />
               <Route path="*" element={<PageNotFound/>} />
             </Routes>
           </Router>
