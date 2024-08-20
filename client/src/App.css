@@ -20,20 +20,23 @@
 }
 
 #card-pack-container {
-  background-color: rgba(255, 255, 255, 0.512);
+  background-color: rgba(182, 182, 182, 0.512);
   margin-top: 1rem;
+  margin-bottom: 5rem;
   border-radius: 6px;
   border: 1px solid black;
   
 }
 
 #card-pack-header {
-  font-weight: 350;
+  font-weight: 400;
   padding-top: 1rem;
+  color: rgba(0, 0, 0, 0.596);
+  text-decoration: underline;
 }
 
 .card-pack-display {
-  margin: 10px;
+  margin: 18px;
   width: 14rem;
   text-align: center;
   cursor: pointer;
@@ -224,14 +227,25 @@ label.form-label{
   #inpack-comments-container {
     margin-bottom: 1rem;
   }
-
+  .card-pack-display {
+    margin: 8px;
+    width: 13rem;
+  }
 }
 
 @media (max-width: 768px) {
   #inpack-comments-container {
     margin-top: 1rem;
   }
+  .card-pack-display {
+    margin: 8px;
+    width: 12rem;
+  }
+  #card-pack-accessory {
+    font-size: .7rem;
+  }
 }
+
 
 @media (max-width: 426px) {
   #inpack-text-comments-card-text{
@@ -239,6 +253,10 @@ label.form-label{
   }
   #inpack-carousel-text p {
     font-size: 1rem;
+  }
+  .card-pack-display {
+    margin: 8px;
+    width: 210px;
   }
 }
 

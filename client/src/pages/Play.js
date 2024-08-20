@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
-import { Pagination } from 'react-bootstrap';
+import { Pagination, Nav } from 'react-bootstrap';
 
 function Play() {
 
@@ -15,9 +15,32 @@ function Play() {
   const { authState, setAuthState } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const packPerPage = 4;
+  const [packPerPage, setPackPerPage] = useState(4);
+  const [activeTab, setActiveTab] = useState("played");
 
   let navigate = useNavigate()
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setPackPerPage(6);
+      } else if (window.innerWidth <= 1440) {
+        setPackPerPage(8);
+      } else if (window.innerWidth <= 1440) {
+        setPackPerPage(6);
+      } else {
+        setPackPerPage(8);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -87,12 +110,22 @@ function Play() {
       }
     });
   };
+  
+  const newPosts = [...listOfPosts].sort((a,b) => b.id - a.id)
+  const playedPosts = [...listOfPosts].sort((a,b) => b.clickCount - a.clickCount)
+  const ratedPosts = [...listOfPosts].sort((a,b) => b.Likes.length - a.Likes.length)
 
   const indexOfLastPack = currentPage * packPerPage;
   const indexOfFirstPack = indexOfLastPack - packPerPage;
-  const currentPacks = listOfPosts.slice(indexOfFirstPack, indexOfLastPack);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const currentNewPacks = newPosts.slice(indexOfFirstPack, indexOfLastPack);
+  const currentClickedPacks = playedPosts.slice(indexOfFirstPack, indexOfLastPack);
+  const currentRatedPacks = ratedPosts.slice(indexOfFirstPack, indexOfLastPack);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (loading) {
     return <div>Loading...</div>; // Show a loading message or spinner
@@ -100,11 +133,52 @@ function Play() {
 
   return (
     <div>
-      <Container id='card-pack-container' className='col-xl-9'>
-        <h2 id='card-pack-header'> Recently Created Packs: </h2>
+        <Nav fill variant="tabs" data-bs-theme="light" className="justify-content-center bg-secondary" defaultActiveKey="played">
+        
+        <Nav.Item>
+          <Nav.Link 
+            className='text-black' 
+            eventKey="played" 
+            active={activeTab === "played"}
+            onClick={() => setActiveTab("played")}
+          >
+            Most Played
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link 
+            className='text-black' 
+            eventKey="rated"
+            active={activeTab === "rated"}
+            onClick={() => setActiveTab("rated")}
+          >
+            Highest Rated
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link 
+            className='text-black' 
+            eventKey="new" 
+            active={activeTab === "new"}
+            onClick={() => setActiveTab("new")}
+          >
+            Recently Created
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <Container id='card-pack-container' className='col-xl-9 d-flex justify-content-center flex-wrap'>
+        <h2 id='card-pack-header'>
+          {activeTab === "new" && "Recently Created Packs"}
+          {activeTab === "played" && "Most Played Packs"}
+          {activeTab === "rated" && "Highest Rated Packs"}
+        </h2>
         <Container className='d-flex justify-content-center flex-wrap'>
-            
-          {currentPacks.map((value, key) => {
+          {(activeTab === "new" 
+            ? currentNewPacks 
+            : activeTab === "played"
+            ? currentClickedPacks
+            : currentRatedPacks
+          ).map((value, key) => {
             return (
             <Card text="black "className="card-pack-display" bg="white" border='black' onClick={() => {navigate(`/pack/${value.id}`)}}>
               <Card.Header id='card-pack-title'> {value.title} </Card.Header>
