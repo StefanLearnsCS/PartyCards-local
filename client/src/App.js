@@ -66,7 +66,7 @@ function App() {
                     </>
                     ) : (
                     <>
-                    <Nav.Link href="#link"><Link id="nav-link" to="/"> Profile </Link></Nav.Link>
+                    <Nav.Link href="#link"><Link id="nav-link" to={`/profile/${authState.id}`}> Profile </Link></Nav.Link>
                     <Nav.Link eventKey={2} href="#link"><LogoutButton /></Nav.Link>
                     <Navbar.Text style={{ marginLeft: '15px' }}> Logged in: {authState.username} </Navbar.Text>
                     </>

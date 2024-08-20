@@ -12,12 +12,19 @@ router.get('/', validateToken, async (req, res) => {
 
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id;
-    const post = await Posts.findByPk(id);
+    try {
+        const post = await Posts.findByPk(id);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
 
-    post.clickCount += 1;
-    await post.save();
+        post.clickCount += 1;
+        await post.save();
 
-    res.json(post)
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred' });
+    }
 });
 
 router.post('/', validateToken, async (req, res) => {
@@ -43,9 +50,17 @@ router.delete('/:postId', validateToken, async (req, res) => {
 
 router.get('/byuserId/:id', validateToken, async (req, res) => {
     const id = req.params.id;
-    const listOfPosts = await Posts.findAll({ where: { UserId: id }, include: [Likes] });
-    const likedPosts = await Likes.findAll({where: {UserId: req.user.id}})
-    res.json({listOfPosts: listOfPosts, likedPosts: likedPosts})
+    try {
+        const listOfPosts = await Posts.findAll({ where: { UserId: id }, include: [Likes] });
+        if (!listOfPosts.length) {
+            return res.status(404).json({ error: 'No posts found for this user' });
+        }
+
+        const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
+        res.json({ listOfPosts: listOfPosts, likedPosts: likedPosts });
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred' });
+    }
 });
 
 module.exports = router;

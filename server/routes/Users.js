@@ -42,9 +42,17 @@ router.post("/login", async (req, res) => {
   router.get('/basicinfo/:id', async (req, res) => {
     const id = req.params.id;
 
-    const basicInfo = await Users.findByPk(id, {attributes: {exclude: ['password']}})
+    try {
+        const basicInfo = await Users.findByPk(id, { attributes: { exclude: ['password'] } });
 
-    res.json(basicInfo)
-  })
+        if (!basicInfo) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json(basicInfo);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred' });
+    }
+});
 
 module.exports = router;
