@@ -138,7 +138,7 @@ function Play() {
             className='text-black' 
             eventKey="played" 
             active={activeTab === "played"}
-            onClick={() => setActiveTab("played")}
+            onClick={() => {setActiveTab("played"); setCurrentPage(1);}}
           >
             Most Played
           </Nav.Link>
@@ -148,7 +148,7 @@ function Play() {
             className='text-black' 
             eventKey="rated"
             active={activeTab === "rated"}
-            onClick={() => setActiveTab("rated")}
+            onClick={() => {setActiveTab("rated"); setCurrentPage(1);}}
           >
             Highest Rated
           </Nav.Link>
@@ -158,19 +158,19 @@ function Play() {
             className='text-black' 
             eventKey="new" 
             active={activeTab === "new"}
-            onClick={() => setActiveTab("new")}
+            onClick={() => {setActiveTab("new"); setCurrentPage(1);}}
           >
             Recently Created
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <Container id='card-pack-container' className='col-xl-9 d-flex justify-content-center flex-wrap'>
+      <Container id='card-pack-container' className='mb-5 col-xl-9 d-flex justify-content-center flex-wrap'>
         <h2 id='card-pack-header'>
           {activeTab === "new" && "Recently Created Packs"}
           {activeTab === "played" && "Most Played Packs"}
           {activeTab === "rated" && "Highest Rated Packs"}
         </h2>
-        <Container id="hello" className='d-flex justify-content-center flex-wrap'>
+        <Container className='d-flex justify-content-center flex-wrap'>
           {(activeTab === "new" 
             ? currentNewPacks 
             : activeTab === "played"

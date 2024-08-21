@@ -2,6 +2,12 @@
   font-family: Poppins, sans-serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --color-background: #ffffffc4;
   --stroke-width: calc(1em / 16);
@@ -9,10 +15,16 @@
   --letter-spacing: calc(1em / 8);
 }
 
+#root {
+  height: 100%;
+}
+
 .App {
   text-align: center;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #2c2c2c, #ff4e50, #2c2c2c);
+  min-height: 100vh;
 }
 
 .nav-link {
@@ -25,7 +37,7 @@
   margin-bottom: 5rem;
   border-radius: 6px;
   border: 1px solid black;
-  
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 #card-pack-header {
@@ -89,7 +101,7 @@
 }
 
 #card-pack-description {
-  font-size: .75rem;
+  font-size: .7rem;
   height: 7rem;
 }
 

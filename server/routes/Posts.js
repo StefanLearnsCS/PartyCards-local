@@ -57,7 +57,13 @@ router.get('/byuserId/:id', validateToken, async (req, res) => {
         }
 
         const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
-        res.json({ listOfPosts: listOfPosts, likedPosts: likedPosts });
+
+        const likedPostIds = likedPosts.map(like => like.PostId);
+
+        const userLikedPosts = await Posts.findAll({ where: { id: likedPostIds }, include: [Likes] });
+
+        res.json({ listOfPosts, likedPosts, userLikedPosts });
+
     } catch (error) {
         res.status(500).json({ error: 'An error occurred' });
     }
