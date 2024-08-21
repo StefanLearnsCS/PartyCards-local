@@ -145,7 +145,7 @@ function Profile() {
             active={activeTab === "user"}
             onClick={() => {setActiveTab("user"); setCurrentPage(1);}}
           >
-            Creator's Packs
+            Creator Packs
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

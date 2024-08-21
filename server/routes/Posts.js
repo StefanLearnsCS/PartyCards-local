@@ -58,7 +58,9 @@ router.get('/byuserId/:id', validateToken, async (req, res) => {
 
         const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
 
-        const likedPostIds = likedPosts.map(like => like.PostId);
+        const ulikedPosts = await Likes.findAll({ where: { UserId: req.params.id } });
+
+        const likedPostIds = ulikedPosts.map(like => like.PostId);
 
         const userLikedPosts = await Posts.findAll({ where: { id: likedPostIds }, include: [Likes] });
 
