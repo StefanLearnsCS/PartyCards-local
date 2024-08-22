@@ -2,6 +2,10 @@
   font-family: Poppins, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -27,6 +31,11 @@ html, body {
   min-height: 100vh;
 }
 
+.blur {
+  filter: blur(10px);
+  transition: filter 0.3s ease-in-out;
+}
+
 .nav-link {
   color: white;
 }
@@ -40,7 +49,7 @@ html, body {
   background-color: rgba(136, 136, 136, 0.678);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
   margin-top: 6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 6rem;
   width: 70%;
 }
 
@@ -74,6 +83,14 @@ html, body {
   color: #ffffff;
   line-height: 1.5;
   margin-top: 1rem;
+  padding: 0 10px;
+}
+
+#home-subtext-col {
+  font-size: .9rem;
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
   padding: 0 10px;
 }
 
@@ -300,6 +317,9 @@ label.form-label{
   #inpack-comments-container {
     margin-bottom: 1rem;
   }
+  #home-container-2 {
+    width: 90%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -312,6 +332,10 @@ label.form-label{
   }
   #card-pack-accessory {
     font-size: .7rem;
+  }
+  #home-container-2 {
+    width: 80%;
+    margin-top: 3rem;
   }
 }
 
