@@ -56,7 +56,6 @@ function App() {
                   <Nav className="me-auto">
                     <Nav.Link ><Link id="nav-link" to="/createpack"> Create a Pack</Link></Nav.Link>
                     <Nav.Link href="#link"><Link id="nav-link" to="/play"> View All Packs </Link></Nav.Link>
-                    <Nav.Link href="#link"><Link id="nav-link" to="/"> Instructions </Link></Nav.Link>
                   </Nav>
                   <Nav>
                     {!authState.status ? (
@@ -107,7 +106,7 @@ function LogoutButton() {
   };
 
   return (
-    <Link id="nav-link" to="/login" onClick={logout}> Sign out </Link>
+    <Link id="nav-link" to="/" onClick={logout}> Sign out </Link>
   );
 }
 
