@@ -32,7 +32,16 @@ html, body {
 }
 
 #home-container-1 {
-  height: 80vh;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#home-container-2 {
+  background-color: rgba(136, 136, 136, 0.678);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  width: 70%;
 }
 
 #home-header {
@@ -43,6 +52,15 @@ html, body {
 #home-header-image {
   opacity: 0.6;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+#home-accessory-image {
+  opacity: 0.8;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+#home-image-col {
+  padding: 0;
 }
 
 #home-highlighted-text {
