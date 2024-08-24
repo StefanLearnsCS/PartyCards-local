@@ -40,10 +40,12 @@ router.post("/login", async (req, res) => {
   router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
   
   router.get('/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', { failureRedirect: '/login' }), 
     (req, res) => {
-      const accessToken = sign({username: req.user.username, id: req.user.id}, "importantsecret");
-      res.json({token: accessToken, username: req.user.username, id: req.user.id});
+      const accessToken = sign({username: req.user.username, id: req.user.id}, "importantsecret");;  // Function to generate JWT
+      const username = req.user.username;
+      const id = req.user.id;
+      res.redirect(`http://localhost:3000/login?token=${accessToken}&username=${username}&id=${id}`);
     }
   );
 
