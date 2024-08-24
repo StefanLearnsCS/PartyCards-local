@@ -1,9 +1,20 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
+const passport = require('./middleware/passport');
+const session = require('express-session');
 
 app.use(express.json());
 app.use(cors());
+
+app.use(session({
+    secret: 'importantsecret',
+    resave: false,
+    saveUninitialized: true
+  }));
+  
+app.use(passport.initialize());
+app.use(passport.session());
 
 const db = require('./models')
 

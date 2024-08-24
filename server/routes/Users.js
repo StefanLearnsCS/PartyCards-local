@@ -4,6 +4,8 @@ const { Users } = require("../models");
 const bcrypt = require('bcrypt');
 const {validateToken} = require("../middleware/AuthMiddleware")
 const {sign} = require('jsonwebtoken')
+const passport = require('passport');
+  require('../middleware/passport');
 
 router.post('/', async (req, res) => {
     const { username, password } = req.body;
@@ -34,6 +36,16 @@ router.post("/login", async (req, res) => {
           }); 
       }
   });
+  
+  router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+  
+  router.get('/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+      const accessToken = sign({username: req.user.username, id: req.user.id}, "importantsecret");
+      res.json({token: accessToken, username: req.user.username, id: req.user.id});
+    }
+  );
 
   router.get('/auth', validateToken, (req, res) => {
     res.json(req.user)
