@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, InputGroup, FloatingLabel } from 'react-bootstrap'
 import FunWithFriends from "../images/fun-with-friends.jpg"
 import CreatePackImg from "../images/createpackimg.jpg"
 import UserCreatedPacksImg from "../images/usercreatedpacks.jpg"
@@ -110,6 +110,38 @@ function Home() {
                 className="d-block w-100" 
               />
             </Col>
+          </Row>
+        </Container>
+        <Container id="contact-container">
+          <h2 id='contact-header'>Reach out to <span id='home-highlighted-text'>PartyCards</span> directly:</h2>
+          <h5 id='home-subtext-col'>
+            We'd love to hear from you! Whether you have questions, feedback, or just want to share your thoughts, drop us a message below and we'll get back to you as soon as possible.
+          </h5>
+          <Row className='g-2 mt-4'>
+            <Col>
+              <FloatingLabel controlId="floatingInputGrid" label="First Name">
+                <Form.Control type="text" placeholder="John" />
+              </FloatingLabel>
+            </Col>
+            <Col>
+              <FloatingLabel controlId="floatingInputGrid" label="Last Name">
+                <Form.Control type="text" placeholder="Doe" />
+              </FloatingLabel>
+            </Col>
+          </Row>
+          <Row className="g-2 mt-2">
+            <FloatingLabel controlId="floatingInputGrid" label="Email address">
+              <Form.Control type="email" placeholder="name@example.com" />
+            </FloatingLabel>
+          </Row>
+          <Row className="g-2 mt-2">
+            <FloatingLabel controlId="floatingTextarea2" label="Your Message">
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a comment here"
+                style={{ height: '100px' }}
+              />
+            </FloatingLabel>
           </Row>
         </Container>
         <Container>
