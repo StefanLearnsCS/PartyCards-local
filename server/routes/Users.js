@@ -5,17 +5,50 @@ const bcrypt = require('bcrypt');
 const {validateToken} = require("../middleware/AuthMiddleware")
 const {sign} = require('jsonwebtoken')
 const passport = require('passport');
-  require('../middleware/passport');
+require('../middleware/passport');
 
 router.post('/', async (req, res) => {
-    const { username, password } = req.body;
-    bcrypt.hash(password, 10).then((hash) => {
-        Users.create({
+    const { username, password, email, googleId } = req.body;
+
+    try {
+        // Check if email or username already exists
+        const existingUser = await Users.findOne({ where: { email: email } });
+        if (existingUser) {
+            return res.status(400).json({ error: "Email already in use" });
+        }
+
+        const existingUsername = await Users.findOne({ where: { username: username } });
+        if (existingUsername) {
+            return res.status(400).json({ error: "Username already taken" });
+        }
+
+        // If registering with Google, check if the Google ID already exists
+        if (googleId) {
+            const existingGoogleUser = await Users.findOne({ where: { googleId: googleId } });
+            if (existingGoogleUser) {
+                return res.status(400).json({ error: "Google account already linked" });
+            }
+        }
+
+        // Hash the password (only if password is provided)
+        let hashedPassword = null;
+        if (password) {
+            hashedPassword = await bcrypt.hash(password, 10);
+        }
+
+        // Create the new user
+        const newUser = await Users.create({
             username: username,
-            password: hash,
-        })
-        res.json("SUCCESS");
-    })
+            password: hashedPassword,
+            email: email,
+            googleId: googleId || null,
+        });
+
+        res.status(201).json({ message: "User created successfully", user: newUser });
+    } catch (error) {
+        console.error('Error during user creation:', error);
+        res.status(500).json({ error: "An error occurred while creating the user" });
+    }
 });
 
 router.post("/login", async (req, res) => {
@@ -37,7 +70,7 @@ router.post("/login", async (req, res) => {
       }
   });
   
-  router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+  router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
   
   router.get('/google/callback', 
     passport.authenticate('google', { failureRedirect: '/login' }), 

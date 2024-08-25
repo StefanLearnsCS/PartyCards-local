@@ -2,8 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { Users } = require("../models");
 
-console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
-console.log('GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
+const MAX_USERNAME_LENGTH = 17;
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -17,10 +16,26 @@ passport.use(new GoogleStrategy({
         if (!profile.displayName) {
           throw new Error('Username is required');
         }
+
+        const uniqueId = Math.floor(1000 + Math.random() * 9000);
+        const baseUsername = profile.displayName.replace(/\s+/g, '').slice(0, MAX_USERNAME_LENGTH - 5);
+        const username = `${baseUsername}#${uniqueId}`;
+
+        const email = profile.emails && profile.emails[0] && profile.emails[0].value ? profile.emails[0].value : null;
+        if (!email) {
+          throw new Error('Email is required');
+        }
+
+        const existingUser = await Users.findOne({ where: { username } });
+        if (existingUser) {
+          throw new Error('Username already exists, please try again');
+        }
+
         user = await Users.create({
-          username: profile.displayName,
+          username: username,
           googleId: profile.id,
-          password: null,
+          email: email,
+          password: process.env.userPasses,
         });
       }
       return done(null, user);
