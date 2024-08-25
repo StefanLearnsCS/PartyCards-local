@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Container, Button, Form as BootstrapForm, Alert} from 'react-bootstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Register() {
@@ -87,7 +87,8 @@ function Register() {
 
   return (
     <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
-      <p id='register-subtext'> Create your <span id='home-highlighted-text'>PartyCards</span> account. It’s free and only takes a minute. </p>
+      <p id='register-text'> Create your <span id='home-highlighted-text'>PartyCards</span> account. It’s free and only takes a minute! </p>
+      <p id='register-subtext'> Already have an account? <Link to="/login">Login Here!</Link></p>
       <div className="d-flex justify-content-center mb-3 mt-4">
         <button className="google-btn d-flex align-items-center" onClick={googleLogin}>
           <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"/>

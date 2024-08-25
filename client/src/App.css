@@ -304,14 +304,25 @@ label.form-label{
   margin-top: 1rem;
 }
 
-#register-subtext {
+#register-text {
   font-size: 1.5rem;
   font-weight: 500;
   color: #000000;
   line-height: 1.5;
   margin-top: 1rem;
   padding: 0 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+#register-subtext {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.5;
+  margin-top: 1rem;
+  padding: 0 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
@@ -327,6 +338,7 @@ label.form-label{
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .google-btn img {
