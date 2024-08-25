@@ -304,6 +304,40 @@ label.form-label{
   margin-top: 1rem;
 }
 
+#register-subtext {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.5;
+  margin-top: 1rem;
+  padding: 0 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  color: #333333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.google-btn img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.google-btn:hover {
+  background-color: #f1f1f1;
+}
+
 @media (max-width: 1440px) {
   #inpack-comments-container {
     margin-bottom: 1rem;

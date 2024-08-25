@@ -80,15 +80,33 @@ function Register() {
     }
   };
 
+  const googleLogin = () => {
+    window.location.href = "http://localhost:3001/auth/google";
+  };  
+
 
   return (
     <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
+      <p id='register-subtext'> Create your <span id='home-highlighted-text'>PartyCards</span> account. It’s free and only takes a minute. </p>
+      <div className="d-flex justify-content-center mb-3 mt-4">
+        <button className="google-btn d-flex align-items-center" onClick={googleLogin}>
+          <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"/>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+      
+      <div className="d-flex align-items-center mb-3">
+        <hr className="flex-grow-1" />
+        <span className="mx-2">or</span>
+        <hr className="flex-grow-1" />
+      </div>
+
       {backendError && <Alert variant="danger">{backendError}</Alert>}
       <Formik 
           initialValues={initialValues} 
           onSubmit={onSubmit} 
           validationSchema={validationSchema} 
-          validateOnChange={true}
+          validateOnChange={true} 
           validateOnBlur={true}
       >
         <Form>
