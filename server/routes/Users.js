@@ -36,9 +36,11 @@ router.post('/', async (req, res) => {
             hashedPassword = await bcrypt.hash(password, 10);
         }
 
+        const uniqueId = Math.floor(1000 + Math.random() * 9000);
+
         // Create the new user
         const newUser = await Users.create({
-            username: username,
+            username:`${username}#${uniqueId}`,
             password: hashedPassword,
             email: email,
             googleId: googleId || null,
@@ -52,9 +54,9 @@ router.post('/', async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
   
-    const user = await Users.findOne({ where: { username: username } });
+    const user = await Users.findOne({ where: { email: email } });
   
     if (!user) {
         res.json({ error: "User Doesn't Exist" });
@@ -64,7 +66,7 @@ router.post("/login", async (req, res) => {
                   res.json({ error: "Wrong Username And Password Combination" });
               } else {
                   const accessToken = sign({username: user.username, id: user.id}, "importantsecret");
-                  res.json({token: accessToken, username: username, id: user.id});
+                  res.json({token: accessToken, username: user.username, id: user.id});
               }
           }); 
       }
