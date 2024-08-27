@@ -25,6 +25,7 @@ const cardRouter = require('./routes/Cards');
 const commentRouter = require('./routes/Comments');
 const userRouter = require('./routes/Users');
 const likesRouter = require('./routes/Likes');
+const contactRouter = require('./routes/Contact');
 
 
 app.use("/posts", postRouter);
@@ -32,6 +33,7 @@ app.use("/cards", cardRouter);
 app.use("/comments", commentRouter);
 app.use("/auth", userRouter);
 app.use("/likes", likesRouter);
+app.use("/contact", contactRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {

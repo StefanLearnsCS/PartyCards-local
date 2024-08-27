@@ -5,14 +5,44 @@ import FunWithFriends from "../images/fun-with-friends.jpg"
 import CreatePackImg from "../images/createpackimg.jpg"
 import UserCreatedPacksImg from "../images/usercreatedpacks.jpg"
 import InGameImg from "../images/ingameimg.jpg"
+import ReCAPTCHA from 'react-google-recaptcha';
+import axios from 'axios'
 
 function Home() {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [honeyPot, setHoneyPot] = useState("");
 
   const [blurState, setBlurState] = useState({
     firstRow: true,
     secondRow: true,
     thirdRow: true,
   });
+
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const contact = () => {
+    if (!firstName || !lastName || !email || !message) {
+      alert('All fields are required.');
+      return;
+    }
+    if (!isValidEmail(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const data = { firstName, lastName, email, message, honeyPot };
+    axios.post("http://localhost:3001/contact", data)
+      .then(() => {
+        alert('Message sent successfully! We will get back to you as soon as possible!');
+      })
+      .catch((error) => {
+        alert('Error sending message. Please try again later.');
+      });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,18 +150,27 @@ function Home() {
           <Row className='g-2 mt-4'>
             <Col>
               <FloatingLabel controlId="floatingInputGrid" label="First Name">
-                <Form.Control type="text" placeholder="John" />
+                <Form.Control 
+                type="text" 
+                placeholder="John"
+                onChange={(event) => {setFirstName(event.target.value);}} />
               </FloatingLabel>
             </Col>
             <Col>
               <FloatingLabel controlId="floatingInputGrid" label="Last Name">
-                <Form.Control type="text" placeholder="Doe" />
+                <Form.Control 
+                type="text" 
+                placeholder="Doe" 
+                onChange={(event) => {setLastName(event.target.value);}}/>
               </FloatingLabel>
             </Col>
           </Row>
           <Row className="g-2 mt-2">
             <FloatingLabel controlId="floatingInputGrid" label="Email address">
-              <Form.Control type="email" placeholder="name@example.com" />
+              <Form.Control 
+              type="email" 
+              placeholder="name@example.com" 
+              onChange={(event) => {setEmail(event.target.value);}}/>
             </FloatingLabel>
           </Row>
           <Row className="g-2 mt-2">
@@ -140,9 +179,18 @@ function Home() {
                 as="textarea"
                 placeholder="Leave a comment here"
                 style={{ height: '100px' }}
+                onChange={(event) => {setMessage(event.target.value);}}
               />
             </FloatingLabel>
+            <Form.Control //SPAM DETECTION
+                type="text" 
+                placeholder="Do not fill this out" 
+                style={{ display: 'none' }} 
+                value={honeyPot} 
+                onChange={(event) => setHoneyPot(event.target.value)} 
+            />
           </Row>
+          <Button size='md' variant="light" id="home-play-btn" className='mt-4 rounded-5' onClick={contact}> Send Message </Button>
         </Container>
         <Container>
           Footer
