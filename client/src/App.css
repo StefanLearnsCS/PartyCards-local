@@ -56,10 +56,11 @@ html, body {
 #home-header {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
 }
 
 #home-header-image {
-  opacity: 0.6;
+  opacity: 0.65;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
 }
 
@@ -380,6 +381,9 @@ label.form-label{
   #home-container-2 {
     width: 90%;
   }
+  #contact-container {
+    width: 70%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -397,6 +401,9 @@ label.form-label{
     width: 80%;
     margin-top: 3rem;
   }
+  #contact-container {
+    width: 80%;
+  }
 }
 
 
@@ -410,6 +417,9 @@ label.form-label{
   .card-pack-display {
     margin: 4px;
     width: 170px;
+  }
+  #contact-container {
+    padding: 1rem;
   }
 }
 

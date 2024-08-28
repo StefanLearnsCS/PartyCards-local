@@ -107,7 +107,7 @@ function Home() {
               />
             </Col>
           </Row>
-          <Row id="second-row" className={`${blurState.secondRow ? 'blur' : ''}`}>
+          <Row id="second-row" className={`border border-black ${blurState.secondRow ? 'blur' : ''}`}>
             <Col id="home-image-col" className="order-lg-1 order-2" xl="6" lg="6">
               <img 
                 src={InGameImg} 
