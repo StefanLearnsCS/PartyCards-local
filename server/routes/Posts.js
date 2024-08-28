@@ -52,9 +52,6 @@ router.get('/byuserId/:id', validateToken, async (req, res) => {
     const id = req.params.id;
     try {
         const listOfPosts = await Posts.findAll({ where: { UserId: id }, include: [Likes] });
-        if (!listOfPosts.length) {
-            return res.status(404).json({ error: 'No posts found for this user' });
-        }
 
         const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
 
