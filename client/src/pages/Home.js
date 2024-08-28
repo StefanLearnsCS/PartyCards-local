@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Container, Row, Col, Button, Form, InputGroup, FloatingLabel } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Button, Form, FloatingLabel } from 'react-bootstrap'
 import FunWithFriends from "../images/fun-with-friends.jpg"
 import CreatePackImg from "../images/createpackimg.jpg"
 import UserCreatedPacksImg from "../images/usercreatedpacks.jpg"
 import InGameImg from "../images/ingameimg.jpg"
-import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios'
 
 function Home() {
@@ -21,6 +21,8 @@ function Home() {
     secondRow: true,
     thirdRow: true,
   });
+
+  const navigate = useNavigate();
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -80,7 +82,7 @@ function Home() {
                 made by others, PartyCards has you covered. No more fumbling with real cards—everything you need is right here, ready to bring the 
                 fun to your next event! 
               </h5>
-              <Button size='lg' variant="light" id="home-play-btn" className='rounded-5'> Play Now </Button>
+              <Button size='lg' variant="light" id="home-play-btn" className='rounded-5' onClick={() => navigate('/play')}> Play Now </Button>
             </Col>
             <Col xl="5" lg="6" md="7" className='mt-2'>
               <img src={FunWithFriends} alt="Two friends laughing playing party cards" id='home-header-image' className="d-block w-100 rounded-4" />
