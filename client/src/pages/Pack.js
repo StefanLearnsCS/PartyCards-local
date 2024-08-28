@@ -84,6 +84,20 @@ function Pack() {
         })
     }
 
+    const shuffleArray = (array) => {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    };
+
+    const shuffleCards = () => {
+        setCards(shuffleArray(cards));
+    };
+
+
     const indexOfLastComment = currentPage * commentsPerPage;
     const indexOfFirstComment = indexOfLastComment - commentsPerPage;
     const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
@@ -107,7 +121,8 @@ function Pack() {
                             </Carousel.Item>
                         })}
                     </Carousel>
-                    {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-warning mt-3'> Delete Pack </Button>}
+                    <Button onClick={shuffleCards} className='btn-warning m-2'> Shuffle Pack </Button>
+                    {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-danger m-2'> Delete Pack </Button>}
                 </Col>
                 <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='rounded border border-secondary d-flex flex-column justify-content-between'>
                     <div id="inpack-text-comments-header">Share Your Funny Stories:</div>
