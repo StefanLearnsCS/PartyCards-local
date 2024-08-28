@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import { Container, Button, Form as BootstrapForm, Alert} from 'react-bootstrap';
@@ -6,10 +6,12 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { AuthContext } from '../helpers/AuthContext'; 
 
 function Register() {
 
   const [backendError, setBackendError] = useState(null);
+  const {setAuthState} = useContext(AuthContext);
 
   let navigate = useNavigate();
 
@@ -67,7 +69,11 @@ function Register() {
       if (response.data.error) {
         setBackendError(response.data.error);
       } else {
-        navigate("/");
+        axios.post("http://localhost:3001/auth/login", data).then((response) => {
+            localStorage.setItem("accessToken", response.data.token, );
+            setAuthState({username: response.data.username, id: response.data.id, status: true});
+            navigate("/");
+          })
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {

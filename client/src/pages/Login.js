@@ -66,6 +66,7 @@ function Login() {
         <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
           <Form.Label> Email: </Form.Label>
           <Form.Control 
+            type='email'
             placeholder="Email" 
             onChange={(event) => {setEmail(event.target.value);}}/>
         </Form.Group>
