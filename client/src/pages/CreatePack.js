@@ -93,7 +93,7 @@ function CreatePack() {
     
             await Promise.all(cardPromises);
     
-            navigate("/");
+            navigate(`/pack/${packId}`);
         } catch (error) {
             console.error("Error creating card pack and cards", error);
         }
