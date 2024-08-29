@@ -92,7 +92,7 @@ function Home() {
       
       
         <Container id="home-container-2" className="justify-content-center align-items-center">
-          <Row id="first-row" className={`border border-black ${blurState.firstRow ? 'blur' : ''}`}>
+          <Row id="first-row" className={`border border-white ${blurState.firstRow ? 'blur' : ''}`}>
             <Col xl="6" lg="6" className='d-flex flex-column justify-content-center align-items-center'>
               <h2 id='home-header' > Create and Share Your Own Deck of Party Cards</h2>
               <h5 id='home-subtext-col'> 
@@ -109,7 +109,7 @@ function Home() {
               />
             </Col>
           </Row>
-          <Row id="second-row" className={`border border-black ${blurState.secondRow ? 'blur' : ''}`}>
+          <Row id="second-row" className={`border border-white ${blurState.secondRow ? 'blur' : ''}`}>
             <Col id="home-image-col" className="order-lg-1 order-2" xl="6" lg="6">
               <img 
                 src={InGameImg} 
@@ -126,7 +126,7 @@ function Home() {
               </h5>
             </Col>
           </Row>
-          <Row id="third-row" className={`border border-black ${blurState.thirdRow ? 'blur' : ''}`}>
+          <Row id="third-row" className={`border border-white ${blurState.thirdRow ? 'blur' : ''}`}>
             <Col xl="6" lg="6" className='d-flex flex-column justify-content-center align-items-center'>
               <h2 id='home-header' > Search Through Recently Created, Top Rated and Most Played PartyCard Packs </h2>
               <h5 id='home-subtext-col'> 
@@ -144,7 +144,7 @@ function Home() {
             </Col>
           </Row>
         </Container>
-        <Container id="contact-container">
+        <Container id="contact-container" className='border border-white'>
           <h2 id='contact-header'>Reach out to <span id='home-highlighted-text'>PartyCards</span> directly:</h2>
           <h5 id='home-subtext-col'>
             We'd love to hear from you! Whether you have questions, feedback, or just want to share your thoughts, drop us a message below and we'll get back to you as soon as possible.

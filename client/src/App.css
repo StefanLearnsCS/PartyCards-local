@@ -305,6 +305,17 @@ label.form-label{
   margin-top: 1rem;
 }
 
+#inpack-text-comments-card-username{
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  color: rgb(78, 78, 255);
+}
+
+#inpack-text-comments-card-text{
+  padding: 0;
+}
+
 #register-text {
   font-size: 1.5rem;
   font-weight: 500;
@@ -420,6 +431,9 @@ label.form-label{
   }
   #contact-container {
     padding: 1rem;
+  }
+  #inpack-text-comments-card-username {
+    font-size: .8rem;
   }
 }
 

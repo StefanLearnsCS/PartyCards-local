@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Col, Row, Carousel, InputGroup, Form, Button, Card, Pagination} from 'react-bootstrap';
 import CardBG from '../images/card-bg.jpg';
 import { AuthContext } from '../helpers/AuthContext'; 
+import ProfileAva from '../images/profileava.jpg'
 
 function Pack() {
     let { id } = useParams()
@@ -15,7 +16,7 @@ function Pack() {
     const [charCount, setCharCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const commentsPerPage = 4;
-    const MAX_CHAR_LIMIT = 100;
+    const MAX_CHAR_LIMIT = 150;
     const { authState } = useContext(AuthContext);
 
     let navigate = useNavigate();
@@ -156,11 +157,32 @@ function Pack() {
                     {currentComments.map((card, key) => {
                         return <div id="inpack-text-comments" className='fs-6' key={key}> 
                             <Card id="inpack-text-comments-card" bg="white" border="secondary">
-                                <Card.Body>
-                                    <Card.Text id="inpack-text-comments-card-text">
-                                        {card.username}: {card.commentText}
-                                    </Card.Text>
-                                    {authState.username === card.username && <Button className='btn btn-primary btn-sm' onClick={() => {deleteComment(card.id)}}> Delete </Button>}
+                                <Card.Body style={{padding: "0"}}>
+                                    <Row>
+                                        <Col xl="2" lg="3" md="2" xs="3">
+                                            <img 
+                                            src={ProfileAva}
+                                            className="d-block w-100 rounded" />
+                                        </Col>
+                                        <Col xl="10" lg="9" md="10" xs="9">
+                                            <Row  className="d-flex align-items-center justify-content-between">
+                                                <Col xl="10" lg="9" md="10" xs="8" id="inpack-text-comments-card-username">{card.username}</Col>
+                                                <Col>
+                                                    {authState.username === card.username && (
+                                                        <div
+                                                            id="inpack-text-comments-card-username" 
+                                                            onClick={() => deleteComment(card.id)} 
+                                                            style={{ cursor: 'pointer', color: 'red' }}>
+                                                            Delete
+                                                        </div>
+                                                    )}
+                                                </Col>
+                                            </Row>
+                                            <Row style={{marginRight: "1px"}}>
+                                                <p id="inpack-text-comments-card-text">{card.commentText}</p>
+                                            </Row>
+                                        </Col>
+                                    </Row>
                                 </Card.Body>
                             </Card>
                         </div>
