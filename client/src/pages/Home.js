@@ -194,9 +194,6 @@ function Home() {
           </Row>
           <Button size='md' variant="light" id="home-play-btn" className='mt-4 rounded-5' onClick={contact}> Send Message </Button>
         </Container>
-        <Container>
-          Footer
-        </Container>
     </div>
   )
 }

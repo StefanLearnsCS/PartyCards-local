@@ -16,6 +16,7 @@ import axios from 'axios';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile'
 import Play from './pages/Play'
+import Footer from './components/Footer'
 
 function App() {
   
@@ -84,6 +85,8 @@ function App() {
               <Route path="/play" element={<Play/>} />
               <Route path="*" element={<PageNotFound/>} />
             </Routes>
+
+            <Footer/>
           </Router>
         </AuthContext.Provider>
       </div>

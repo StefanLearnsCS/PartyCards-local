@@ -244,6 +244,7 @@ label.form-label{
   text-align: left;
   background-color: rgba(255, 255, 255, 0.795);
   padding: 0 1rem 1rem 1rem;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8);
 }
 
 #inpack-text-comments {
@@ -251,17 +252,21 @@ label.form-label{
 }
 
 #inpack-text-comments-header {
+  color: blue;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: .25rem;
   margin-top: .25rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #inpack-text-comments-add {
   margin-bottom: auto;
 }
 
-
+#inpack-carousel {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8);
+}
 
 #inpack-carousel-text {
   position: absolute;
@@ -302,7 +307,8 @@ label.form-label{
 
 #inpack-text-comments-card{
   width: 100%;
-  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #inpack-text-comments-card-username{
@@ -349,6 +355,14 @@ label.form-label{
 #contact-header {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#footer-container {
+  background-color: #303030;
+  color: white;
+  border-top: white solid 1px;
+  width: 100%;
+  margin: 0;
 }
 
 .google-btn {

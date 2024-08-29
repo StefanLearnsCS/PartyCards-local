@@ -112,7 +112,7 @@ function Pack() {
                 
             <Row className="justify-content-center">
                 <Col md={8} lg={6} xl={6}>
-                    <Carousel data-bs-theme="dark" className='rounded border border-black' interval={null}>
+                    <Carousel id="inpack-carousel" data-bs-theme="dark" className='rounded border border-black' interval={null}>
                         {cards.map((card, key) => {
                             return <Carousel.Item key={key}>
                                 <img src={CardBG} alt="First slide" className="d-block w-100 rounded" />
@@ -122,13 +122,12 @@ function Pack() {
                             </Carousel.Item>
                         })}
                     </Carousel>
-                    <Button onClick={shuffleCards} className='btn-warning m-2'> Shuffle Pack </Button>
-                    {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-danger m-2'> Delete Pack </Button>}
+                    <Button onClick={shuffleCards} className='btn-warning m-3'> Shuffle Pack </Button>
+                    {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-danger m-3'> Delete Pack </Button>}
                 </Col>
-                <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='rounded border border-secondary d-flex flex-column justify-content-between'>
-                    <div id="inpack-text-comments-header">Share Your Funny Stories:</div>
+                <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='border border-black d-flex flex-column justify-content-between'>
                     <div id="inpack-text-comments-add" className='fs-6'> 
-                        <InputGroup>
+                        <InputGroup className='mt-4 shadow'>
                             <Form.Control
                                 placeholder="Comment..."
                                 type="text"
@@ -141,11 +140,8 @@ function Pack() {
                                 Add Comment
                             </Button>
                         </InputGroup>
-                        <div className='comment-charcount-container'>
-                            <div className='inpack-text-comment-charcount'>
-                                {charCount}/{MAX_CHAR_LIMIT} characters
-                            </div>
-                        </div>
+                        <hr></hr>
+
                         <Pagination className="mt-1">
                             {Array.from({ length: Math.ceil(comments.length / commentsPerPage) }, (_, index) => (
                                 <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
@@ -159,14 +155,14 @@ function Pack() {
                             <Card id="inpack-text-comments-card" bg="white" border="secondary">
                                 <Card.Body style={{padding: "0"}}>
                                     <Row>
-                                        <Col xl="2" lg="3" md="2" xs="3">
+                                        <Col xl="2" lg="3" md="2" xs="2">
                                             <img 
                                             src={ProfileAva}
                                             className="d-block w-100 rounded" />
                                         </Col>
-                                        <Col xl="10" lg="9" md="10" xs="9">
+                                        <Col xl="10" lg="9" md="10" xs="10">
                                             <Row  className="d-flex align-items-center justify-content-between">
-                                                <Col xl="10" lg="9" md="10" xs="8" id="inpack-text-comments-card-username">{card.username}</Col>
+                                                <Col xl="10" lg="9" md="10" xs="9" id="inpack-text-comments-card-username">@{card.username}</Col>
                                                 <Col>
                                                     {authState.username === card.username && (
                                                         <div

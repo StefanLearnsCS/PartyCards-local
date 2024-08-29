@@ -135,7 +135,7 @@ function Profile() {
 
     return (
       <div>
-      <h1 className='mt-2'> {username}'s Party Page </h1>
+      <h1 id='home-header' className='mt-2'> {username}'s Party Page </h1>
       <Container id='card-pack-container' className='mb-5 col-xl-9 d-flex justify-content-center flex-wrap'>
       <Nav variant="pills" data-bs-theme="dark" className="mt-2 bg-secondary rounded border" defaultActiveKey="played">
         <Nav.Item>
