@@ -93,6 +93,7 @@ html, body {
   line-height: 1.5;
   margin: 0;
   padding: 0 10px;
+  margin-bottom: 1rem;
 }
 
 #home-play-btn {
@@ -112,7 +113,7 @@ html, body {
   font-weight: 400;
   padding-top: 1rem;
   color: rgba(0, 0, 0, 0.596);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .card-pack-display {
@@ -234,6 +235,8 @@ label.form-label{
   -webkit-text-stroke-color: transparent;
   -webkit-text-stroke-width: var(--stroke-width);
   margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin-top: 1rem;
 }
 
 .inpack-container {

@@ -165,7 +165,7 @@ function Play() {
         </Nav.Item>
       </Nav>
       <Container id='card-pack-container' className='col-xl-9 d-flex justify-content-center flex-wrap'>
-        <h2 id='card-pack-header'>
+        <h2 id='inpack-text-title'>
           {activeTab === "new" && "Recently Created Packs"}
           {activeTab === "played" && "Most Played Packs"}
           {activeTab === "rated" && "Highest Rated Packs"}

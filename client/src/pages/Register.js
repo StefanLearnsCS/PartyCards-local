@@ -92,7 +92,7 @@ function Register() {
 
 
   return (
-    <Container className='col-xl-4 col-lg-6 col-md-7 rounded border border-secondary' id='create-pack-container'>
+    <Container className='col-xl-4 col-lg-6 col-md-7 border border-secondary' id='create-pack-container'>
       <p id='register-text'> Create your <span id='home-highlighted-text'>PartyCards</span> account. It’s free and only takes a minute! </p>
       <p id='register-subtext'> Already have an account? <Link to="/login">Login Here!</Link></p>
       <div className="d-flex justify-content-center mb-3 mt-4">
