@@ -164,7 +164,7 @@ function Play() {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <Container id='card-pack-container' className='mb-5 col-xl-9 d-flex justify-content-center flex-wrap'>
+      <Container id='card-pack-container' className='col-xl-9 d-flex justify-content-center flex-wrap'>
         <h2 id='card-pack-header'>
           {activeTab === "new" && "Recently Created Packs"}
           {activeTab === "played" && "Most Played Packs"}
