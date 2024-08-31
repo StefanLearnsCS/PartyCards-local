@@ -85,7 +85,13 @@ function Home() {
               <Button size='lg' variant="light" id="home-play-btn" className='rounded-5' onClick={() => navigate('/play')}> Play Now </Button>
             </Col>
             <Col xl="5" lg="6" md="7" className='mt-2'>
-              <img src={FunWithFriends} alt="Two friends laughing playing party cards" id='home-header-image' className="d-block w-100 rounded-4" />
+              <img 
+                src={FunWithFriends} 
+                alt="Two friends laughing playing party cards" 
+                id='home-header-image' 
+                className="d-block w-100 rounded-4"
+                loading="lazy"  
+              />
             </Col>
           </Row>
         </Container>
@@ -106,6 +112,7 @@ function Home() {
                 alt="Interface to create your own packs on PartyCards" 
                 id='home-accessory-image' 
                 className="d-block w-100" 
+                loading="lazy"
               />
             </Col>
           </Row>
@@ -116,6 +123,7 @@ function Home() {
                 alt="Interface to look at other players' packs on PartyCards" 
                 id='home-accessory-image' 
                 className="d-block w-100" 
+                loading="lazy"
               />
             </Col>
             <Col xl="6" lg="6" className='d-flex flex-column justify-content-center align-items-center order-lg-2 order-1'>
@@ -140,6 +148,7 @@ function Home() {
                 alt="In game screen shot of PartyCards pack" 
                 id='home-accessory-image' 
                 className="d-block w-100" 
+                loading="lazy"
               />
             </Col>
           </Row>
