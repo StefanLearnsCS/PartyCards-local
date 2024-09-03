@@ -16,7 +16,7 @@ function Login() {
 
   const login = () => {
     const data = {email: email, password: password};
-    axios.post("http://localhost:3001/auth/login", data).then((response) => {
+    axios.post("https://partycards-api-e307a5481398.herokuapp.com/auth/login", data).then((response) => {
       if (response.data.error) {
         setBackendError(response.data.error);
       } else {
@@ -41,7 +41,7 @@ function Login() {
   }, []);
 
   const googleLogin = () => {
-    window.location.href = "http://localhost:3001/auth/google";
+    window.location.href = "https://partycards-api-e307a5481398.herokuapp.com/auth/google";
   };  
 
   return (

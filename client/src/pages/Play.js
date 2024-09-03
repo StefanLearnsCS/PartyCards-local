@@ -47,7 +47,7 @@ function Play() {
       navigate("/login");
     }
 
-    axios.get("http://localhost:3001/auth/auth", { 
+    axios.get("https://partycards-api-e307a5481398.herokuapp.com/auth/auth", { 
       headers: { accessToken } 
     }).then((response) => {
       if (response.data.error) {
@@ -66,7 +66,7 @@ function Play() {
       setLoading(false);
     });
 
-    axios.get("http://localhost:3001/posts", 
+    axios.get("https://partycards-api-e307a5481398.herokuapp.com/posts", 
       { headers: {accessToken: localStorage.getItem("accessToken")}})
       .then((response) => {
         setListOfPosts(response.data.listOfPosts || []);
@@ -81,7 +81,7 @@ function Play() {
 
   const likeAPost = (postId, event) => {
     event.stopPropagation(); 
-    axios.post("http://localhost:3001/likes", 
+    axios.post("https://partycards-api-e307a5481398.herokuapp.com/likes", 
       { PostId: postId}, 
       { headers: {accessToken: localStorage.getItem("accessToken")}}
     ).then((response) => {

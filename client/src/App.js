@@ -27,7 +27,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/auth", {
+    axios.get("https://partycards-api-e307a5481398.herokuapp.com/auth/auth", {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },

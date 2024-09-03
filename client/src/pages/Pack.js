@@ -22,15 +22,15 @@ function Pack() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
+        axios.get(`https://partycards-api-e307a5481398.herokuapp.com/posts/byId/${id}`).then((response) => {
             setPostObject(response.data);
         });
 
-        axios.get(`http://localhost:3001/cards/${id}`).then((response) => {
+        axios.get(`https://partycards-api-e307a5481398.herokuapp.com/cards/${id}`).then((response) => {
             setCards(response.data);
         });
 
-        axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
+        axios.get(`https://partycards-api-e307a5481398.herokuapp.com/comments/${id}`).then((response) => {
             setComments(response.data);
         });
 
@@ -49,7 +49,7 @@ function Pack() {
             return;
         }
         
-        axios.post("http://localhost:3001/comments", {commentText: newComment, packId: id},
+        axios.post("https://partycards-api-e307a5481398.herokuapp.com/comments", {commentText: newComment, packId: id},
             {
                 headers: {
                     accessToken: localStorage.getItem("accessToken"),
@@ -70,7 +70,7 @@ function Pack() {
     };
 
     const deleteComment = (id) => {
-        axios.delete(`http://localhost:3001/comments/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}
+        axios.delete(`https://partycards-api-e307a5481398.herokuapp.com/comments/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}
         }).then(() => {
             setComments(comments.filter((val) => {
                 return val.id != id;
@@ -79,7 +79,7 @@ function Pack() {
     };
 
     const deletePost = (id) => {
-        axios.delete(`http://localhost:3001/posts/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}}
+        axios.delete(`https://partycards-api-e307a5481398.herokuapp.com/posts/${id}`, {headers: { accessToken: localStorage.getItem('accessToken')}}
         ).then(() => {
             navigate("/")
         })

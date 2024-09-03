@@ -49,7 +49,7 @@ function Profile() {
       navigate("/login");
     }
 
-    axios.get("http://localhost:3001/auth/auth", { 
+    axios.get("https://partycards-api-e307a5481398.herokuapp.com/auth/auth", { 
       headers: { accessToken } 
     }).then((response) => {
       if (response.data.error) {
@@ -68,7 +68,7 @@ function Profile() {
       setLoading(false);
     });
 
-    axios.get(`http://localhost:3001/posts/byUserId/${id}`, 
+    axios.get(`https://partycards-api-e307a5481398.herokuapp.com/posts/byUserId/${id}`, 
       { headers: {accessToken: localStorage.getItem("accessToken")}})
       .then((response) => {
         setListOfPosts(response.data.listOfPosts || []);
@@ -82,7 +82,7 @@ function Profile() {
         setLoading(false);
       });
 
-        axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((response) => {
+        axios.get(`https://partycards-api-e307a5481398.herokuapp.com/auth/basicinfo/${id}`).then((response) => {
             setUsername(response.data.username)
         })
         
@@ -90,7 +90,7 @@ function Profile() {
 
     const likeAPost = (postId, event) => {
         event.stopPropagation(); 
-        axios.post("http://localhost:3001/likes", 
+        axios.post("https://partycards-api-e307a5481398.herokuapp.com/likes", 
           { PostId: postId}, 
           { headers: {accessToken: localStorage.getItem("accessToken")}}
         ).then((response) => {

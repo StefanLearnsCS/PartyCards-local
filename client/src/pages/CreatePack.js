@@ -23,7 +23,7 @@ function CreatePack() {
           navigate("/login");
         }
     
-        axios.get("http://localhost:3001/auth/auth", { 
+        axios.get("https://partycards-api-e307a5481398.herokuapp.com/auth/auth", { 
           headers: { accessToken } 
         }).then((response) => {
           if (response.data.error) {
@@ -71,7 +71,7 @@ function CreatePack() {
     const onSubmit = async (data) => {
         try {
             // Post card pack data to /posts
-            const postResponse = await axios.post("http://localhost:3001/posts", {
+            const postResponse = await axios.post("https://partycards-api-e307a5481398.herokuapp.com/posts", {
                 title: data.title,
                 postText: data.postText,
             },
@@ -85,7 +85,7 @@ function CreatePack() {
     
             // Post individual cards to /cards
             const cardPromises = data.cards.map(card => 
-                axios.post("http://localhost:3001/cards", {
+                axios.post("https://partycards-api-e307a5481398.herokuapp.com/cards", {
                     packId: packId,
                     prompt: card.prompt
                 })

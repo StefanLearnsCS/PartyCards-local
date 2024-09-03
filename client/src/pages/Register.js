@@ -64,12 +64,12 @@ function Register() {
     setBackendError(null);
   
     try {
-      const response = await axios.post("http://localhost:3001/auth", data);
+      const response = await axios.post("https://partycards-api-e307a5481398.herokuapp.com/auth", data);
   
       if (response.data.error) {
         setBackendError(response.data.error);
       } else {
-        axios.post("http://localhost:3001/auth/login", data).then((response) => {
+        axios.post("https://partycards-api-e307a5481398.herokuapp.com/auth/login", data).then((response) => {
             localStorage.setItem("accessToken", response.data.token, );
             setAuthState({username: response.data.username, id: response.data.id, status: true});
             navigate("/");
@@ -87,7 +87,7 @@ function Register() {
   };
 
   const googleLogin = () => {
-    window.location.href = "http://localhost:3001/auth/google";
+    window.location.href = "https://partycards-api-e307a5481398.herokuapp.com/auth/google";
   };  
 
 

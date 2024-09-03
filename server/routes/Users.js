@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Users } = require("../models");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {validateToken} = require("../middleware/AuthMiddleware")
 const {sign} = require('jsonwebtoken')
 const passport = require('passport');
@@ -75,12 +75,12 @@ router.post("/login", async (req, res) => {
   router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
   
   router.get('/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/login' }), 
+    passport.authenticate('google', { failureRedirect: '/login?error=google-auth' }), 
     (req, res) => {
       const accessToken = sign({username: req.user.username, id: req.user.id}, "importantsecret");;  // Function to generate JWT
       const username = req.user.username;
       const id = req.user.id;
-      res.redirect(`http://localhost:3000/login?token=${accessToken}&username=${username}&id=${id}`);
+      res.redirect(`https://partycards.io/login?token=${accessToken}&username=${username}&id=${id}`);
     }
   );
 

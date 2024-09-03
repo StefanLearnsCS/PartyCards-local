@@ -26,11 +26,11 @@ function Footer() {
               <div id='footer-text'><a href="/">Homepage</a></div>
               <div id='footer-text'><a href="/createpack">Create a Pack</a></div>
               <div id='footer-text'><a href="/play">View all Packs</a></div>
-              <div id='footer-text'><a href="https://www.linkedin.com/in/stefan-ilic-engineering/">Creator</a></div>
+              <div id='footer-text'><a href="">Creator</a></div>
             </Col>
           </Row>
           <hr></hr>
-          <div id='footer-text'> <a href="https://www.linkedin.com/in/stefan-ilic-engineering/">PartyCards Designed and Developed by: Stefan Ilic </a></div>
+          <div id='footer-text'>PartyCards Creator/Developer Can Be Contacted using the Contact Us Tab!</div>
         </Container>
       </div>
     </div>

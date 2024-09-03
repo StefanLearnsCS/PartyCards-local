@@ -37,7 +37,7 @@ function Home() {
     }
 
     const data = { firstName, lastName, email, message, honeyPot };
-    axios.post("http://localhost:3001/contact", data)
+    axios.post("https://partycards-api-e307a5481398.herokuapp.com/contact", data)
       .then(() => {
         alert('Message sent successfully! We will get back to you as soon as possible!');
       })

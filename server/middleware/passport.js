@@ -26,9 +26,9 @@ passport.use(new GoogleStrategy({
           throw new Error('Email is required');
         }
 
-        const existingUser = await Users.findOne({ where: { username } });
+        const existingUser = await Users.findOne({ where: { email } });
         if (existingUser) {
-          throw new Error('Username already exists, please try again');
+          throw new Error('Email already exists, please try again');
         }
 
         user = await Users.create({
