@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { Posts, Likes } = require("../models");
 const {validateToken} = require("../middleware/AuthMiddleware");
+const rateLimit = require('express-rate-limit');
+
+
+const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 3, 
+    message: "Too many contact requests from this IP, please try again later."
+});
 
 
 router.get('/', validateToken, async (req, res) => {
@@ -27,7 +35,7 @@ router.get('/byId/:id', async (req, res) => {
     }
 });
 
-router.post('/', validateToken, async (req, res) => {
+router.post('/', [validateToken, contactLimiter], async (req, res) => {
     const post = req.body;
     const username = req.user.username;
     post.username = username;

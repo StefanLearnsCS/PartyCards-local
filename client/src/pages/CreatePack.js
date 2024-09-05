@@ -95,7 +95,7 @@ function CreatePack() {
     
             navigate(`/pack/${packId}`);
         } catch (error) {
-            console.error("Error creating card pack and cards", error);
+            alert('Error creating pack. Please try again later.');
         }
     };
 
