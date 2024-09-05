@@ -66,7 +66,9 @@ function Pack() {
                 setCurrentPage(Math.ceil((comments.length + 1) / commentsPerPage));
             }
             
-        })
+        }).catch((error) => {
+            alert('Error adding comment. Please try again later.');
+          });
     };
 
     const deleteComment = (id) => {
