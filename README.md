@@ -77,3 +77,23 @@ npm start
 
 #### You can access the frontend at: http://localhost:3000
 #### The backend API will be accessible at: http://localhost:3001
+
+## API Routes
+* POST /api/cards: Posts individual cards associated with a pack.
+* GET /api/cards/:packId: Fetches cards associated with a pack id.
+* POST /api/comments: Creates a new comment associated with a pack.
+* GET /api/comments/:packId: Fetches comments associated to a pack.
+* DELETE /api/comments/:commentId: Deletes a comment by ID.
+* POST /api/contact: Sends contact message from user to database.
+* POST /api/likes: Applies a "like" or "unlike" to user pack.
+* POST /api/auth: Registers a new user.
+* POST /api/auth/login: Matches user information to database, and returns token.
+* GET /api/auth/google: Handles Google login functionality.
+* GET /api/auth/google/callback: Gives google login user token.
+* GET /api/auth/auth: Validates user token.
+* GET /api/auth/basicinfo/:id: Find basic information about user.
+* GET /api/posts: Gets all posted packs.
+* GET /api/posts/byId/:id: Gets individual pack by ID.
+* POST /api/posts: Posts a new card pack.
+* DELETE /api/posts/:postId: Delete individual pack.
+* GET /api/posts/byuserId/:id: Fetches packs by specific users.
