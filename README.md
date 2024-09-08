@@ -68,3 +68,12 @@ npm start
 
 cd client/
 npm start
+
+```
+
+## Usage
+
+### Once the app is running:
+
+#### You can access the frontend at: http://localhost:3000
+#### The backend API will be accessible at: http://localhost:3001
