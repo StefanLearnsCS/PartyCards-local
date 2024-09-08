@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
-import { Pagination, Nav } from 'react-bootstrap';
+import { Pagination, Nav, Button, Modal } from 'react-bootstrap';
 
 function Play() {
 
@@ -17,6 +17,8 @@ function Play() {
   const [currentPage, setCurrentPage] = useState(1);
   const [packPerPage, setPackPerPage] = useState(4);
   const [activeTab, setActiveTab] = useState("played");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   let navigate = useNavigate()
 
@@ -109,6 +111,16 @@ function Play() {
     });
   };
   
+  const handleShowModal = (post) => {
+    setSelectedPost(post);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedPost(null);
+  };
+
   const newPosts = [...listOfPosts].sort((a,b) => b.id - a.id)
   const playedPosts = [...listOfPosts].sort((a,b) => b.clickCount - a.clickCount)
   const ratedPosts = [...listOfPosts].sort((a,b) => b.Likes.length - a.Likes.length)
@@ -181,7 +193,24 @@ function Play() {
             <Card text="black "className="card-pack-display" bg="white" border='black' onClick={() => {navigate(`/pack/${value.id}`)}}>
               <Card.Header id='card-pack-title'> {value.title} </Card.Header>
               <Card.Body>
-                <Card.Text id='card-pack-description'> {value.postText} </Card.Text>
+                <Card.Text id="card-pack-description">
+                  {value.postText.length > 100 ? (
+                    <>
+                      {value.postText.substring(0, 100)}...
+                      <span
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleShowModal(value);
+                        }}
+                        style={{ color: 'blue', cursor: 'pointer' }}
+                      >
+                        See More
+                      </span>
+                    </>
+                  ) : (
+                    value.postText
+                  )}
+                </Card.Text>
                 <hr></hr>
                 <Card.Text id='card-pack-accessory' style={{fontWeight:"500"}}> Total Plays: {value.clickCount} </Card.Text>
                 <Card.Text id='card-pack-accessory'> <label>Fun Meter: {value.Likes.length} Funs</label></Card.Text>
@@ -200,6 +229,20 @@ function Play() {
             ))}
         </Pagination>
       </Container>
+
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedPost?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{selectedPost?.postText}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      
     </div>
   )
 }
