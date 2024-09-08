@@ -23,3 +23,13 @@
 * ORM: Sequelize
 * Form Handling: Formik, Yup
 * Hosting: Netlify (Frontend), Heroku (Backend)
+
+## Getting Started
+
+### Prerequisites
+
+#### Make sure you have the following installed:
+
+* Node.js (version 14.x or above)
+* MySQL
+* Git
