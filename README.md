@@ -7,7 +7,7 @@
 
 ## Features
 
---* Create Custom Games: Design your own party card game.
---* Discover Games: Browse and find card packs made by other players.
---* User Authentication: Sign in using Google or create an account manually.
---* Responsive Design: Optimized for mobile and desktop devices.
+* Create Custom Games: Design your own party card game.
+* Discover Games: Browse and find card packs made by other players.
+* User Authentication: Sign in using Google or create an account manually.
+* Responsive Design: Optimized for mobile and desktop devices.
