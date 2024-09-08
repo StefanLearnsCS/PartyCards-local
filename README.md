@@ -33,3 +33,9 @@
 * Node.js (version 14.x or above)
 * MySQL
 * Git
+
+---git
+
+git clone https://github.com/your-username/partycards.git
+
+---
