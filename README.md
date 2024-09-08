@@ -34,8 +34,8 @@
 * MySQL
 * Git
 
----git
+### Installation 
+
+```bash
 
 git clone https://github.com/your-username/partycards.git
-
----
