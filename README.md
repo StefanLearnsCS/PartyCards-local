@@ -39,4 +39,32 @@
 ```bash
 
 # Clone the repository
-git clone https://github.com/your-username/partycards.git
+git clone https://github.com/your-username/PartyCards-local.git
+
+# Navigate to the project directory:
+cd partycards-local
+
+
+# Navigate to backend and install packages:
+cd server/
+npm install
+
+# Navigate to frontend and install packages:
+cd ..
+cd client/
+npm install
+
+# Setup enviornment variables in a .env file in server, i.e.
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+userPasses=yourpassword
+
+# Configure your database in server/config/config.json
+
+# Start application in /server and /client
+
+cd server/
+npm start
+
+cd client/
+npm start
