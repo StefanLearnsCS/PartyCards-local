@@ -106,3 +106,11 @@ npm start
 * Commit your changes (git commit -m 'Add some feature').
 * Push to the branch (git push origin feature/feature-name).
 * Open a pull request.
+
+## Contact
+
+#### For any questions or suggestions, feel free to reach out:
+
+#### Name: Stefan Ilic
+#### Email: stefancool00@gmail.com
+#### LinkedIn: https://www.linkedin.com/in/stefan-ilic-engineering/
