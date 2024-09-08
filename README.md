@@ -97,3 +97,12 @@ npm start
 * POST /api/posts: Posts a new card pack.
 * DELETE /api/posts/:postId: Delete individual pack.
 * GET /api/posts/byuserId/:id: Fetches packs by specific users.
+
+## Contributing
+### Contributions are welcome! To contribute:
+
+#### Fork the project.
+* Create your feature branch (git checkout -b feature/feature-name).
+* Commit your changes (git commit -m 'Add some feature').
+* Push to the branch (git push origin feature/feature-name).
+* Open a pull request.
