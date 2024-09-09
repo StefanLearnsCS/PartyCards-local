@@ -126,6 +126,9 @@ function Pack() {
                     </Carousel>
                     <Button onClick={shuffleCards} className='btn-warning m-3'> Shuffle Pack </Button>
                     {authState.username === postObject.username && <Button onClick={() => {deletePost(postObject.id)}} className='btn-danger m-3'> Delete Pack </Button>}
+                    <div>
+                        <h1 id='inpack-instructions-header'> Instructions: </h1>
+                    </div>
                 </Col>
                 <Col md={10} lg={6} xl={6} id="inpack-comments-container" className='border border-black d-flex flex-column justify-content-between'>
                     <div id="inpack-text-comments-add" className='fs-6'> 

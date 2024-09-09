@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
+        instructions: {
+            type: DataTypes.TEXT,
+            allowNull: true, 
+        },
     });
 
     Posts.associate = (models) => {

@@ -293,6 +293,12 @@ label.form-label{
   font-weight: 500;
 }
 
+#inpack-instructions-header {
+  text-align: left;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 .comment-charcount-container {
   display: flex;
   justify-content: flex-end;

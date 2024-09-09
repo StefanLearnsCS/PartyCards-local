@@ -74,6 +74,7 @@ function CreatePack() {
             const postResponse = await axios.post("http://localhost:3001/posts", {
                 title: data.title,
                 postText: data.postText,
+                instructions: data.instructions,
             },
             {
                 headers: {
@@ -154,6 +155,13 @@ function CreatePack() {
                             type="text"
                             label="Description:"
                             placeholder="Describe your Party Pack!"
+                            component={BootstrapFieldText}
+                        />
+                        <Field
+                            name="instructions"
+                            type="text"
+                            label="How to Play:"
+                            placeholder="1. Each player takes turns selecting a card."
                             component={BootstrapFieldText}
                         />
                         
