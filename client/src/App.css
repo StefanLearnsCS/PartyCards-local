@@ -248,6 +248,8 @@ label.form-label{
   background-color: rgba(255, 255, 255, 0.795);
   padding: 0 1rem 1rem 1rem;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8);
+  min-height: 80vh;
+  margin-bottom: auto;
 }
 
 #inpack-text-comments {
@@ -297,6 +299,16 @@ label.form-label{
   text-align: left;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#inpack-instructions-text {
+  text-align: left;
+  color: white;
+  line-height: 1.2;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .comment-charcount-container {

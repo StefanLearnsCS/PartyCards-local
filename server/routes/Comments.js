@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 
 
 const contactLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
+    windowMs: 1 * 60 * 1000, // 15 minutes
     max: 3, // Limit each IP to 5 requests per windowMs
     message: "Too many contact requests from this IP, please try again later."
 });
