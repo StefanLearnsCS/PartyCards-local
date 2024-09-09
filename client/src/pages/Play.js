@@ -194,9 +194,9 @@ function Play() {
               <Card.Header id='card-pack-title'> {value.title} </Card.Header>
               <Card.Body>
                 <Card.Text id="card-pack-description">
-                  {value.postText.length > 100 ? (
+                  {value.postText.length > 120 ? (
                     <>
-                      {value.postText.substring(0, 100)}...
+                      {value.postText.substring(0, 100)} ...  
                       <span
                         onClick={(event) => {
                           event.stopPropagation();
@@ -235,14 +235,16 @@ function Play() {
         <Modal.Header closeButton>
           <Modal.Title>{selectedPost?.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{selectedPost?.postText}</Modal.Body>
+        <Modal.Body style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
+          {selectedPost?.postText}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-      
+
     </div>
   )
 }
