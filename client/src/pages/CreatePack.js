@@ -85,7 +85,6 @@ function CreatePack() {
 
     const onSubmit = async (data) => {
         try {
-            // Post card pack data to /posts
             const postResponse = await axios.post("http://localhost:3001/posts", {
                 title: data.title,
                 postText: data.postText,
@@ -101,7 +100,6 @@ function CreatePack() {
     
             const packId = postResponse.data.id; 
     
-            // Post individual cards to /cards
             const cardPromises = data.cards.map(card => 
                 axios.post("http://localhost:3001/cards", {
                     packId: packId,
@@ -146,7 +144,7 @@ function CreatePack() {
     );
 
     if (loading) {
-        return <div>Loading...</div>; // Show a loading message or spinner
+        return <div>Loading...</div>;
       }
 
     return (
