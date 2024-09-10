@@ -212,6 +212,7 @@ function Play() {
                   )}
                 </Card.Text>
                 <hr></hr>
+                <Card.Text id='card-pack-accessory'> Player Size: 2-8 </Card.Text>
                 <Card.Text id='card-pack-accessory' style={{fontWeight:"500"}}> Total Plays: {value.clickCount} </Card.Text>
                 <Card.Text id='card-pack-accessory'> <label>Fun Meter: {value.Likes.length} Funs</label></Card.Text>
                 <Card.Subtitle id='card-pack-accessory'><Link to={`/profile/${value.UserId}`} onClick={(e) => e.stopPropagation()}> Creator: {value.username}</Link> </Card.Subtitle>

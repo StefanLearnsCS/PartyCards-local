@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
-import { Container, Button, Form as BootstrapForm} from 'react-bootstrap';
+import { Container, Button, Form as BootstrapForm, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from 'yup';
 import axios from "axios";
@@ -59,6 +59,18 @@ function CreatePack() {
         instructions: Yup.string()
         .required("Instructions are required!")
         .max(1000, "Instructions must be shorter than 1000 characters!"),
+        playerMin: Yup.number()
+        .required("Minimum players is required!")
+        .min(1, "Must have atleast 1 player!")
+        .max(99, "Must be less than 99!"),
+        playerMax: Yup.number()
+        .required("Maximum players is required!")
+        .min(1, "Must have at least 1 player!")
+        .max(100, "Must be less than 100!")
+        .test("min-less-than-max", "Maximum players must be more than or equal to Minimum players", function (value) {
+            const { playerMin } = this.parent;
+            return playerMin <= value;
+        }),
         cards: Yup.array()
             .of(
                 Yup.object().shape({
@@ -78,6 +90,8 @@ function CreatePack() {
                 title: data.title,
                 postText: data.postText,
                 instructions: data.instructions,
+                playerMin: data.playerMin,
+                playerMax: data.playerMax,
             },
             {
                 headers: {
@@ -167,6 +181,28 @@ function CreatePack() {
                             placeholder="1. Each player takes turns selecting a card."
                             component={BootstrapFieldText}
                         />
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="playerMin"
+                                    type="integer"
+                                    label="Minimum Players:"
+                                    placeholder="2"
+                                    component={BootstrapField}
+                                />
+                            </Col>
+                            <Col>
+                                <Field
+                                    name="playerMax"
+                                    type="integer"
+                                    label="Maximum Players:"
+                                    placeholder="6"
+                                    component={BootstrapField}
+                                />
+                            </Col>
+                        </Row>
+                        
+                        
                         
                         <FieldArray name="cards">
                             {({ remove, push, form }) => (
